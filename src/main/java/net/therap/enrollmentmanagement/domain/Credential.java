@@ -24,6 +24,16 @@ public class Credential  implements Serializable {
     @Size(min = 2, max = 100)
     private String name;
 
+    @Override
+    public String toString() {
+        return "Credential{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", password='" + password + '\'' +
+                ", role=" + role +
+                '}';
+    }
+
     @Column(name = "password")
     @NotNull
     @Size(min = 2, max = 45)
