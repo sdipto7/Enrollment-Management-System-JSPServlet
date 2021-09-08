@@ -11,6 +11,7 @@
         <class>net.therap.enrollmentmanagement.domain.User</class>
         <class>net.therap.enrollmentmanagement.domain.Course</class>
         <class>net.therap.enrollmentmanagement.domain.Enrollment</class>
+        <class>net.therap.enrollmentmanagement.domain.Credential</class>
 
         <properties>
             <property name="javax.persistence.jdbc.driver"
