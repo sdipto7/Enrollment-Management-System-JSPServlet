@@ -26,6 +26,9 @@ public class User implements Serializable {
     @Size(min = 2, max = 100)
     private String name;
 
+    @OneToOne
+    private Credential credential;
+
     @OneToMany(mappedBy = "user",
             cascade = CascadeType.REMOVE)
     private List<Enrollment> enrollmentList;
@@ -36,6 +39,14 @@ public class User implements Serializable {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public Credential getCredential() {
+        return credential;
+    }
+
+    public void setCredential(Credential credential) {
+        this.credential = credential;
     }
 
     public String getName() {
