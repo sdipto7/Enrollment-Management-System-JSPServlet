@@ -11,7 +11,7 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "credential")
-public class Credential  implements Serializable {
+public class Credential implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -23,16 +23,6 @@ public class Credential  implements Serializable {
     @NotNull
     @Size(min = 2, max = 100)
     private String name;
-
-    @Override
-    public String toString() {
-        return "Credential{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", password='" + password + '\'' +
-                ", role=" + role +
-                '}';
-    }
 
     @Column(name = "password")
     @NotNull
@@ -53,11 +43,11 @@ public class Credential  implements Serializable {
         this.id = id;
     }
 
-    public String getUserName() {
+    public String getName() {
         return name;
     }
 
-    public void setUserName(String name) {
+    public void setName(String name) {
         this.name = name;
     }
 
