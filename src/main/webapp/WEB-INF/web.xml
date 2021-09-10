@@ -13,4 +13,41 @@
         <servlet-name>login</servlet-name>
         <url-pattern>/loginForm</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>logout</servlet-name>
+        <servlet-class>net.therap.enrollmentmanagement.servlets.LogoutServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>logout</servlet-name>
+        <url-pattern>/LogoutButton</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>admin_home</servlet-name>
+        <servlet-class>net.therap.enrollmentmanagement.servlets.AdminHomeServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>admin_home</servlet-name>
+        <url-pattern>/admin_home</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>user_home</servlet-name>
+        <servlet-class>net.therap.enrollmentmanagement.servlets.UserHomeServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>user_home</servlet-name>
+        <url-pattern>/user_home</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>courses</servlet-name>
+        <servlet-class>net.therap.enrollmentmanagement.servlets.CourseServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>courses</servlet-name>
+        <url-pattern>/viewCourseButton</url-pattern>
+    </servlet-mapping>
+
 </web-app>

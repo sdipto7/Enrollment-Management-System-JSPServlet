@@ -2,6 +2,7 @@ package net.therap.enrollmentmanagement.servlets;
 
 import net.therap.enrollmentmanagement.dao.CredentialDao;
 import net.therap.enrollmentmanagement.domain.Credential;
+import net.therap.enrollmentmanagement.domain.Role;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -25,7 +26,14 @@ public class LoginServlet extends HttpServlet {
         if (Objects.nonNull(credential)){
             HttpSession session = request.getSession();
             session.setAttribute("userName", name);
-            response.sendRedirect("welcome.jsp");
+            session.setAttribute("admin", Role.ADMIN);
+            session.setAttribute("user", Role.USER);
+            if(credential.getRole() == Role.ADMIN) {
+                session.setAttribute("role", Role.ADMIN);
+            }else{
+                session.setAttribute("role", Role.USER);
+            }
+            response.sendRedirect("home.jsp");
         }else{
             response.sendRedirect("index.jsp");
         }
