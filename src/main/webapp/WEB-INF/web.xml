@@ -25,20 +25,11 @@
 
     <servlet>
         <servlet-name>admin_home</servlet-name>
-        <servlet-class>net.therap.enrollmentmanagement.servlets.AdminHomeServlet</servlet-class>
+        <servlet-class>net.therap.enrollmentmanagement.servlets.HomeServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>admin_home</servlet-name>
-        <url-pattern>/admin_home</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>user_home</servlet-name>
-        <servlet-class>net.therap.enrollmentmanagement.servlets.UserHomeServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>user_home</servlet-name>
-        <url-pattern>/user_home</url-pattern>
+        <url-pattern>/home</url-pattern>
     </servlet-mapping>
 
     <servlet>

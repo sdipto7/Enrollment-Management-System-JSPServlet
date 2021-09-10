@@ -12,7 +12,7 @@ import java.util.Objects;
  * @author rumi.dipto
  * @since 9/9/21
  */
-public class AdminHomeServlet extends HttpServlet {
+public class HomeServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         PrintWriter out = response.getWriter();
