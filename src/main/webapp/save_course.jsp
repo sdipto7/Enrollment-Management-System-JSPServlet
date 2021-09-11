@@ -10,7 +10,7 @@
         <form action="/addCourse">
             Course Code:<input type="text" name="courseCode"><br>
             Course Title:<input type="text" name="courseTitle"><br>
-            <input type="submit" value="ADD">
+            <input type="submit" value="ADD"><br>
         </form>
     </c:when>
 
@@ -19,10 +19,11 @@
             <input type="hidden" name="courseId" value="${courseId}"/>
             Course Code:<input type="text" name="courseCode"><br>
             Course Title:<input type="text" name="courseTitle"><br>
-            <input type="submit" value="UPDATE">
+            <input type="submit" value="UPDATE"><br>
         </form>
     </c:when>
 </c:choose>
+<br>
 <form action="/LogoutButton">
     <input type="submit" value="Logout">
 </form>

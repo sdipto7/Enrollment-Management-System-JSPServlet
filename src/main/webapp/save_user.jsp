@@ -9,7 +9,7 @@
     <c:when test="${action == 'add'}">
         <form action="/addUser">
             Name: <input type="text" name="name"><br>
-            <input type="submit" value="ADD">
+            <input type="submit" value="ADD"><br>
         </form>
     </c:when>
 
@@ -17,10 +17,11 @@
         <form action="/updateUser">
             <input type="hidden" name="userId" value="${userId}"/>
             Name:<input type="text" name="name"><br>
-            <input type="submit" value="UPDATE">
+            <input type="submit" value="UPDATE"><br>
         </form>
     </c:when>
 </c:choose>
+<br>
 <form action="/LogoutButton">
     <input type="submit" value="Logout">
 </form>

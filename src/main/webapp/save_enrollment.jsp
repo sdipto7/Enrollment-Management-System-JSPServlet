@@ -10,7 +10,7 @@
         <form action="/addEnrollment">
             User's name:<input type="text" name="name"><br>
             Course Code:<input type="text" name="courseCode"><br>
-            <input type="submit" value="ADD">
+            <input type="submit" value="ADD"><br>
         </form>
     </c:when>
 
@@ -19,10 +19,11 @@
             <input type="hidden" name="enrollmentId" value="${enrollmentId}"/>
             User's name:<input type="text" name="name"><br>
             Course Code:<input type="text" name="courseCode"><br>
-            <input type="submit" value="UPDATE">
+            <input type="submit" value="UPDATE"><br>
         </form>
     </c:when>
 </c:choose>
+<br>
 <form action="/LogoutButton">
     <input type="submit" value="Logout">
 </form>

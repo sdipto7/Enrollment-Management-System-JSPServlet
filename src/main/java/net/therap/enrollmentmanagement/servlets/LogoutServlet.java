@@ -18,4 +18,8 @@ public class LogoutServlet extends HttpServlet {
         session.invalidate();
         response.sendRedirect("index.jsp");
     }
+
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        doGet(request, response);
+    }
 }
