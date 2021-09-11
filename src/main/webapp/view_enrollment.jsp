@@ -2,7 +2,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>Enrollments</title>
 </head>
 <body>
 <table>
@@ -11,7 +11,6 @@
         <th>User name</th>
         <th>Course Code</th>
         <th>Course Title</th>
-
     </tr>
     <c:forEach var="enrollment" items="${enrollment_list}">
         <c:url var="updateLink" value="/updateEnrollmentLink">

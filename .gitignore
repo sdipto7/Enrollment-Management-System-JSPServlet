@@ -4,4 +4,3 @@ gradle/
 gradlew
 gradlew.bat
 .gradle
-src/main/java/net/therap/enrollmentmanagement/controller
