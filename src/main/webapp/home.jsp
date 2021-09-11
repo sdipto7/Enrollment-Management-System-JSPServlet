@@ -4,29 +4,27 @@
 <head>
     <title>Admin Home</title>
 </head>
-    <body>
-        <h1>WELCOME ${userName}</h1>
+<body>
+<h1>WELCOME ${userName}</h1><br>
 
-        <c:choose>
-            <c:when test="${role == admin}">
-        <form action="/viewCourseButton">
-            <input type="submit" value="View Courses">
-        </form>
+<form action="/viewCourseButton">
+    <input type="submit" value="View Courses">
+</form>
+<br>
 
-        <form action="/viewUserButton">
-            <input type="submit" value="View Users">
-        </form>
+<form action="/viewUserButton">
+    <input type="submit" value="View Users">
+</form>
+<br>
 
-        <form action="/viewEnrollmentButton">
-            <input type="submit" value="View Enrollments">
-        </form>
-            </c:when>
+<form action="/viewEnrollmentButton">
+    <input type="submit" value="View Enrollments">
+</form>
+<br>
 
-        </c:choose>
+<form action="/LogoutButton" method="post">
+    <input type="submit" value="Logout">
+</form>
 
-        <form action="/LogoutButton" method="post">
-            <input type="submit" value="Logout">
-        </form>
-
-    </body>
+</body>
 </html>

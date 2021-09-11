@@ -25,21 +25,27 @@
             <td>${enrollment.user.name}</td>
             <td>${enrollment.course.courseCode}</td>
             <td>${enrollment.course.courseTitle}</td>
-            <td>
-                <a href="${updateLink}">Edit</a>
-                |
-                <a href="${deleteLink}"
-                   onclick="if(!(confirm('Are you sure to delete the selected enrollment ?'))) return false">
-                    Delete</a>
-            </td>
+            <c:choose>
+                <c:when test="${role == admin}">
+                    <td>
+                        <a href="${updateLink}">Edit</a>
+                        |
+                        <a href="${deleteLink}"
+                           onclick="if(!(confirm('Are you sure to delete the selected enrollment ?'))) return false">
+                            Delete</a>
+                    </td>
+                </c:when></c:choose>
         </tr>
     </c:forEach>
 </table>
 <br>
-<form action="/addEnrollmentButton">
-    <input type="submit" value="Add Enrollment">
-</form>
-<br>
+<c:choose>
+    <c:when test="${role == admin}">
+        <form action="/addEnrollmentButton">
+            <input type="submit" value="Add Enrollment">
+        </form>
+        <br>
+    </c:when></c:choose>
 <form action="/LogoutButton">
     <input type="submit" value="Logout">
 </form>
