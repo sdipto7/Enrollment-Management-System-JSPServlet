@@ -26,7 +26,7 @@ public class CourseServlet extends HttpServlet {
 
             switch (uri) {
                 case "/viewCourseButton":
-                    viewAllCourses(request, response);
+                    viewAllCourse(request, response);
                     break;
                 case "/addCourseButton":
                     session.setAttribute("action", "add");
@@ -57,7 +57,7 @@ public class CourseServlet extends HttpServlet {
         }
     }
 
-    public void viewAllCourses(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void viewAllCourse(HttpServletRequest request, HttpServletResponse response) throws IOException {
         CourseService courseService = new CourseService();
         List<Course> courseList = courseService.findAll();
 

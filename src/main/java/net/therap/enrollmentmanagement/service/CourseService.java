@@ -25,6 +25,10 @@ public class CourseService {
         return courseDao.find(id);
     }
 
+    public Course findByCourseCode(String courseCode) {
+        return courseDao.findByCourseCode(courseCode);
+    }
+
     public void saveOrUpdate(Course course) {
         courseDao.saveOrUpdate(course);
     }

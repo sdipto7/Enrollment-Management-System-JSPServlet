@@ -7,23 +7,38 @@
 <body>
 <table>
     <tr>
-        <th>Id</th>
-        <th>User name</th>
         <th>User Id</th>
+        <th>User name</th>
         <th>Course Code</th>
         <th>Course Title</th>
 
     </tr>
     <c:forEach var="enrollment" items="${enrollment_list}">
+        <c:url var="updateLink" value="/updateEnrollmentLink">
+            <c:param name="enrollmentId" value="${enrollment.id}"/>
+        </c:url>
+        <c:url var="deleteLink" value="/deleteEnrollment">
+            <c:param name="enrollmentId" value="${enrollment.id}"/>
+        </c:url>
         <tr>
-            <td>${enrollment.id}</td>
-            <td>${enrollment.getUser().getName()}</td>
-            <td>${enrollment.getUser().getId()}</td>
-            <td>${enrollment.getCourse().getCourseCode()}</td>
-            <td>${enrollment.getCourse().getCourseTitle()}</td>
+            <td>${enrollment.user.id}</td>
+            <td>${enrollment.user.name}</td>
+            <td>${enrollment.course.courseCode}</td>
+            <td>${enrollment.course.courseTitle}</td>
+            <td>
+                <a href="${updateLink}">Edit</a>
+                |
+                <a href="${deleteLink}"
+                   onclick="if(!(confirm('Are you sure to delete the selected enrollment ?'))) return false">
+                    Delete</a>
+            </td>
         </tr>
     </c:forEach>
 </table>
+<br>
+<form action="/addEnrollmentButton">
+    <input type="submit" value="Add Enrollment">
+</form>
 <br>
 <form action="/LogoutButton">
     <input type="submit" value="Logout">

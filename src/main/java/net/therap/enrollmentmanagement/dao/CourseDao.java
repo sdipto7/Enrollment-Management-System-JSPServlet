@@ -30,6 +30,14 @@ public class CourseDao {
         return entityManager.find(Course.class, id);
     }
 
+    public Course findByCourseCode(String courseCode) {
+        Query query = entityManager.createQuery("from Course c where c.courseCode = :code");
+        query.setParameter("code", courseCode);
+        List<Course> courseList = query.getResultList();
+
+        return courseList.isEmpty() ? null : courseList.get(0);
+    }
+
     public void saveOrUpdate(Course course) {
         entityManager.getTransaction().begin();
 

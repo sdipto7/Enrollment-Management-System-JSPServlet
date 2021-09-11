@@ -30,6 +30,14 @@ public class UserDao {
         return entityManager.find(User.class, id);
     }
 
+    public User findByName(String name) {
+        Query query = entityManager.createQuery("from User u where u.name = :name");
+        query.setParameter("name", name);
+        List<User> userList = query.getResultList();
+
+        return userList.isEmpty() ? null : userList.get(0);
+    }
+
     public void saveOrUpdate(User user) {
         entityManager.getTransaction().begin();
 

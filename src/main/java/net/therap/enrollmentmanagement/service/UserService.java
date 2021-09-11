@@ -25,6 +25,10 @@ public class UserService {
         return userDao.find(id);
     }
 
+    public User findByName(String name) {
+        return userDao.findByName(name);
+    }
+
     public void saveOrUpdate(User user) {
         userDao.saveOrUpdate(user);
     }
