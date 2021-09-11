@@ -33,12 +33,66 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>courses</servlet-name>
+        <servlet-name>view_courses</servlet-name>
         <servlet-class>net.therap.enrollmentmanagement.servlets.CourseServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>courses</servlet-name>
+        <servlet-name>view_courses</servlet-name>
         <url-pattern>/viewCourseButton</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>add_course_button</servlet-name>
+        <servlet-class>net.therap.enrollmentmanagement.servlets.CourseServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>add_course_button</servlet-name>
+        <url-pattern>/addCourseButton</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>add_course</servlet-name>
+        <servlet-class>net.therap.enrollmentmanagement.servlets.CourseServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>add_course</servlet-name>
+        <url-pattern>/addCourse</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>update_course</servlet-name>
+        <servlet-class>net.therap.enrollmentmanagement.servlets.CourseServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>update_course</servlet-name>
+        <url-pattern>/updateCourse</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>delete_course</servlet-name>
+        <servlet-class>net.therap.enrollmentmanagement.servlets.CourseServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>delete_course</servlet-name>
+        <url-pattern>/deleteCourse</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>enrollment</servlet-name>
+        <servlet-class>net.therap.enrollmentmanagement.servlets.EnrollmentServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>enrollment</servlet-name>
+        <url-pattern>/viewEnrollmentButton</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>user</servlet-name>
+        <servlet-class>net.therap.enrollmentmanagement.servlets.UserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>user</servlet-name>
+        <url-pattern>/viewUserButton</url-pattern>
     </servlet-mapping>
 
 </web-app>

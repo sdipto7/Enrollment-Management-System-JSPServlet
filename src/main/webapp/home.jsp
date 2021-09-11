@@ -16,18 +16,15 @@
         <form action="/viewUserButton">
             <input type="submit" value="View Users">
         </form>
-            </c:when>
 
-
-            <c:otherwise>
         <form action="/viewEnrollmentButton">
             <input type="submit" value="View Enrollments">
         </form>
-            </c:otherwise>
+            </c:when>
 
         </c:choose>
 
-        <form action="/LogoutButton">
+        <form action="/LogoutButton" method="post">
             <input type="submit" value="Logout">
         </form>
 

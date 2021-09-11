@@ -8,18 +8,19 @@
 <table>
     <tr>
         <th>Id</th>
-        <th>Course Code</th>
-        <th>Course Title</th>
+        <th>Name</th>
 
     </tr>
-    <c:forEach var="course" items="${course_list}">
+    <c:forEach var="user" items="${user_list}">
         <tr>
-            <td>${course.id}</td>
-            <td>${course.courseCode}</td>
-            <td>${course.courseTitle}</td>
+            <td>${user.id}</td>
+            <td>${user.name}</td>
         </tr>
     </c:forEach>
 </table>
-
+<br>
+<form action="/LogoutButton">
+    <input type="submit" value="Logout">
+</form>
 </body>
 </html>
