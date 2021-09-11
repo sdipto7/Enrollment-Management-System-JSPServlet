@@ -24,11 +24,11 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>admin_home</servlet-name>
+        <servlet-name>home</servlet-name>
         <servlet-class>net.therap.enrollmentmanagement.servlets.HomeServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>admin_home</servlet-name>
+        <servlet-name>home</servlet-name>
         <url-pattern>/home</url-pattern>
     </servlet-mapping>
 
@@ -57,6 +57,15 @@
     <servlet-mapping>
         <servlet-name>add_course</servlet-name>
         <url-pattern>/addCourse</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>update_course_link</servlet-name>
+        <servlet-class>net.therap.enrollmentmanagement.servlets.CourseServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>update_course_link</servlet-name>
+        <url-pattern>/updateCourseLink</url-pattern>
     </servlet-mapping>
 
     <servlet>

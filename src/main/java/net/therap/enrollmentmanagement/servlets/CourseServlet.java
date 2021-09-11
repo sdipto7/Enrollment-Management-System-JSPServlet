@@ -29,7 +29,8 @@ public class CourseServlet extends HttpServlet {
                     viewAllCourses(request, response);
                     break;
                 case "/addCourseButton":
-                    response.sendRedirect("add_course.jsp");
+                    session.setAttribute("action", "add");
+                    response.sendRedirect("save_course.jsp");
                     break;
                 case "/addCourse":
                     addCourse(request, response);
@@ -37,7 +38,14 @@ public class CourseServlet extends HttpServlet {
                 case "/deleteCourse":
                     deleteCourse(request, response);
                     break;
+                case "/updateCourseLink":
+                    long courseId = Long.parseLong(request.getParameter("courseId"));
+                    session.setAttribute("action", "update");
+                    session.setAttribute("courseId", courseId);
+                    response.sendRedirect("save_course.jsp");
+                    break;
                 case "/updateCourse":
+                    updateCourse(request, response);
                     break;
                 default:
                     System.out.println("DONE");
@@ -67,6 +75,22 @@ public class CourseServlet extends HttpServlet {
         course.setCourseTitle(courseTitle);
 
         CourseService courseService = new CourseService();
+        courseService.saveOrUpdate(course);
+        response.sendRedirect("view_course.jsp");
+    }
+
+    public void updateCourse(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        long courseId = Long.parseLong(request.getParameter("courseId"));
+
+        CourseService courseService = new CourseService();
+        Course course = courseService.find(courseId);
+
+        String courseCode = request.getParameter("courseCode");
+        String courseTitle = request.getParameter("courseTitle");
+
+        course.setCourseCode(courseCode);
+        course.setCourseTitle(courseTitle);
+
         courseService.saveOrUpdate(course);
         response.sendRedirect("view_course.jsp");
     }
