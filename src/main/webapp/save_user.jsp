@@ -7,18 +7,16 @@
 <body>
 <c:choose>
     <c:when test="${action == 'add'}">
-        <form action="/addCourse">
-            Course Code:<input type="text" name="courseCode"><br>
-            Course Title:<input type="text" name="courseTitle"><br>
+        <form action="/addUser">
+            Name: <input type="text" name="name"><br>
             <input type="submit" value="ADD">
         </form>
     </c:when>
 
     <c:when test="${action == 'update'}">
-        <form action="/updateCourse">
-            <input type="hidden" name="courseId" value="${courseId}"/>
-            Course Code:<input type="text" name="courseCode"><br>
-            Course Title:<input type="text" name="courseTitle"><br>
+        <form action="/updateUser">
+            <input type="hidden" name="userId" value="${userId}"/>
+            Name:<input type="text" name="name"><br>
             <input type="submit" value="UPDATE">
         </form>
     </c:when>

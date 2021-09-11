@@ -96,12 +96,57 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>user</servlet-name>
+        <servlet-name>view_users</servlet-name>
         <servlet-class>net.therap.enrollmentmanagement.servlets.UserServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>user</servlet-name>
+        <servlet-name>view_users</servlet-name>
         <url-pattern>/viewUserButton</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>add_user_button</servlet-name>
+        <servlet-class>net.therap.enrollmentmanagement.servlets.UserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>add_user_button</servlet-name>
+        <url-pattern>/addUserButton</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>add_user</servlet-name>
+        <servlet-class>net.therap.enrollmentmanagement.servlets.UserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>add_user</servlet-name>
+        <url-pattern>/addUser</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>update_user_link</servlet-name>
+        <servlet-class>net.therap.enrollmentmanagement.servlets.UserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>update_user_link</servlet-name>
+        <url-pattern>/updateUserLink</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>update_user</servlet-name>
+        <servlet-class>net.therap.enrollmentmanagement.servlets.UserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>update_user</servlet-name>
+        <url-pattern>/updateUser</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>delete_user</servlet-name>
+        <servlet-class>net.therap.enrollmentmanagement.servlets.UserServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>delete_user</servlet-name>
+        <url-pattern>/deleteUser</url-pattern>
     </servlet-mapping>
 
 </web-app>

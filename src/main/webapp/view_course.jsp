@@ -25,7 +25,8 @@
                 |
                 <a href="${deleteLink}"
                    onclick="if(!(confirm('Are you sure to delete the selected course ?'))) return false">
-                    Delete</a></td>
+                    Delete</a>
+            </td>
         </tr>
     </c:forEach>
 </table>
