@@ -28,30 +28,34 @@ public class CourseServlet extends HttpServlet {
                 case "/viewCourseButton":
                     viewAllCourse(request, response);
                     break;
+
                 case "/addCourseButton":
                     session.setAttribute("action", "add");
                     response.sendRedirect("save_course.jsp");
                     break;
+
                 case "/addCourse":
                     addCourse(request, response);
                     break;
+
                 case "/deleteCourse":
                     deleteCourse(request, response);
                     break;
+
                 case "/updateCourseLink":
                     long courseId = Long.parseLong(request.getParameter("courseId"));
                     session.setAttribute("action", "update");
                     session.setAttribute("courseId", courseId);
                     response.sendRedirect("save_course.jsp");
                     break;
+
                 case "/updateCourse":
                     updateCourse(request, response);
                     break;
+
                 default:
-                    System.out.println("DONE");
                     break;
             }
-
         } else {
             response.sendRedirect("index.jsp");
         }
@@ -81,13 +85,11 @@ public class CourseServlet extends HttpServlet {
 
     public void updateCourse(HttpServletRequest request, HttpServletResponse response) throws IOException {
         long courseId = Long.parseLong(request.getParameter("courseId"));
-
-        CourseService courseService = new CourseService();
-        Course course = courseService.find(courseId);
-
         String courseCode = request.getParameter("courseCode");
         String courseTitle = request.getParameter("courseTitle");
 
+        CourseService courseService = new CourseService();
+        Course course = courseService.find(courseId);
         course.setCourseCode(courseCode);
         course.setCourseTitle(courseTitle);
 

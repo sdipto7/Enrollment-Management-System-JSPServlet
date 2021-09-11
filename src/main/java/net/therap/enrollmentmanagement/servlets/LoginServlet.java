@@ -26,6 +26,7 @@ public class LoginServlet extends HttpServlet {
             session.setAttribute("userName", name);
             session.setAttribute("admin", Role.ADMIN);
             session.setAttribute("user", Role.USER);
+
             if (credential.getRole() == Role.ADMIN) {
                 session.setAttribute("role", Role.ADMIN);
             } else {

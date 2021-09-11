@@ -28,25 +28,31 @@ public class UserServlet extends HttpServlet {
                 case "/viewUserButton":
                     viewAllUsers(request, response);
                     break;
+
                 case "/addUserButton":
                     session.setAttribute("action", "add");
                     response.sendRedirect("save_user.jsp");
                     break;
+
                 case "/addUser":
                     addUser(request, response);
                     break;
+
                 case "/deleteUser":
                     deleteUser(request, response);
                     break;
+
                 case "/updateUserLink":
                     long userId = Long.parseLong(request.getParameter("userId"));
                     session.setAttribute("action", "update");
                     session.setAttribute("userId", userId);
                     response.sendRedirect("save_user.jsp");
                     break;
+
                 case "/updateUser":
                     updateUser(request, response);
                     break;
+
                 default:
                     break;
             }
@@ -75,24 +81,23 @@ public class UserServlet extends HttpServlet {
         response.sendRedirect("view_user.jsp");
     }
 
+    public void updateUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        long userId = Long.parseLong(request.getParameter("userId"));
+        String name = request.getParameter("name");
+
+        UserService userService = new UserService();
+        User user = userService.find(userId);
+        user.setName(name);
+
+        userService.saveOrUpdate(user);
+        response.sendRedirect("view_user.jsp");
+    }
+
     public void deleteUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
         long userId = Long.parseLong(request.getParameter("userId"));
 
         UserDao userDao = new UserDao();
         userDao.delete(userId);
-        response.sendRedirect("view_user.jsp");
-    }
-
-    public void updateUser(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        long userId = Long.parseLong(request.getParameter("userId"));
-
-        UserService userService = new UserService();
-        User user = userService.find(userId);
-
-        String name = request.getParameter("name");
-        user.setName(name);
-
-        userService.saveOrUpdate(user);
         response.sendRedirect("view_user.jsp");
     }
 }

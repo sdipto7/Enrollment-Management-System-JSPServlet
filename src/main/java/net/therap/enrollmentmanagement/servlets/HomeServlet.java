@@ -18,9 +18,9 @@ public class HomeServlet extends HttpServlet {
         PrintWriter out = response.getWriter();
         HttpSession session = request.getSession();
 
-        if (Objects.isNull(session.getAttribute("userName"))){
+        if (Objects.isNull(session.getAttribute("userName"))) {
             response.sendRedirect("index.jsp");
-        }else{
+        } else {
             out.println("Welcome " + session.getAttribute("userName"));
         }
     }

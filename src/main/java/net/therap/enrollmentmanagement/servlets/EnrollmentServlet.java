@@ -32,25 +32,31 @@ public class EnrollmentServlet extends HttpServlet {
                 case "/viewEnrollmentButton":
                     viewAllEnrollment(request, response);
                     break;
+
                 case "/addEnrollmentButton":
                     session.setAttribute("action", "add");
                     response.sendRedirect("save_enrollment.jsp");
                     break;
+
                 case "/addEnrollment":
                     addEnrollment(request, response);
                     break;
+
                 case "/deleteEnrollment":
                     deleteEnrollment(request, response);
                     break;
+
                 case "/updateEnrollmentLink":
                     long enrollmentId = Long.parseLong(request.getParameter("enrollmentId"));
                     session.setAttribute("action", "update");
                     session.setAttribute("enrollmentId", enrollmentId);
                     response.sendRedirect("save_enrollment.jsp");
                     break;
+
                 case "/updateEnrollment":
                     updateEnrollment(request, response);
                     break;
+
                 default:
                     break;
             }
