@@ -4,7 +4,6 @@ import net.therap.enrollmentmanagement.domain.User;
 import net.therap.enrollmentmanagement.util.EntityManagerSingleton;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
 import java.util.List;
 import java.util.Objects;
 
@@ -20,22 +19,18 @@ public class UserDao {
         entityManager = EntityManagerSingleton.getInstance().getEntityManager();
     }
 
-    public List<User> findAll() {
-        Query query = entityManager.createQuery("from User");
-
-        return query.getResultList();
-    }
-
     public User find(long id) {
         return entityManager.find(User.class, id);
     }
 
-    public User findByName(String name) {
-        Query query = entityManager.createQuery("from User u where u.name = :name");
-        query.setParameter("name", name);
-        List<User> userList = query.getResultList();
+    public List<User> findAll() {
+        return entityManager.createQuery("FROM User").getResultList();
+    }
 
-        return userList.isEmpty() ? null : userList.get(0);
+    public User findByName(String name) {
+        return (User) entityManager.createQuery("FROM User u WHERE u.name = :name")
+                .setParameter("name", name)
+                .getSingleResult();
     }
 
     public void saveOrUpdate(User user) {
