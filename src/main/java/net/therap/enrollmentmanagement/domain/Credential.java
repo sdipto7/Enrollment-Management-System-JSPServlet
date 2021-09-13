@@ -1,8 +1,6 @@
 package net.therap.enrollmentmanagement.domain;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.io.Serializable;
 
 /**
@@ -20,19 +18,13 @@ public class Credential implements Serializable {
     private long id;
 
     @Column(name = "name")
-    @NotNull
-    @Size(min = 2, max = 100)
     private String name;
 
     @Column(name = "password")
-    @NotNull
-    @Size(min = 2, max = 45)
     private String password;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "role")
-    @NotNull
-    @Size(min = 2, max = 10)
     private Role role;
 
     public long getId() {

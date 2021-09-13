@@ -20,7 +20,7 @@ CREATE TABLE enrollment(
 
 CREATE TABLE credential (
   id INT NOT NULL AUTO_INCREMENT,
-  user_name VARCHAR(100) NOT NULL,
+  name VARCHAR(100) NOT NULL,
   password VARCHAR(45) NOT NULL,
   role VARCHAR(10) NOT NULL,
   PRIMARY KEY ("id")

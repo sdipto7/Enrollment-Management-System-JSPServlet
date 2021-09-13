@@ -1,7 +1,6 @@
 package net.therap.enrollmentmanagement.domain;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
 /**
@@ -20,12 +19,10 @@ public class Enrollment implements Comparable<Enrollment>, Serializable {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
-    @NotNull
     private User user;
 
     @ManyToOne
     @JoinColumn(name = "course_id")
-    @NotNull
     private Course course;
 
     public User getUser() {
@@ -53,7 +50,7 @@ public class Enrollment implements Comparable<Enrollment>, Serializable {
     }
 
     public boolean isNew() {
-        return this.getId() == 0;
+        return getId() == 0;
     }
 
     @Override

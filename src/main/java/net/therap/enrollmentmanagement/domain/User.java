@@ -1,8 +1,6 @@
 package net.therap.enrollmentmanagement.domain;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.util.List;
 import java.util.Objects;
@@ -22,14 +20,13 @@ public class User implements Serializable {
     private long id;
 
     @Column(name = "name")
-    @NotNull
-    @Size(min = 2, max = 100)
     private String name;
 
     @OneToOne
     private Credential credential;
 
     @OneToMany(mappedBy = "user",
+            fetch = FetchType.EAGER,
             cascade = CascadeType.REMOVE)
     private List<Enrollment> enrollmentList;
 
@@ -69,10 +66,10 @@ public class User implements Serializable {
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(this.getName());
+        return Objects.hashCode(getName());
     }
 
     public boolean isNew() {
-        return this.getId() == 0;
+        return getId() == 0;
     }
 }
