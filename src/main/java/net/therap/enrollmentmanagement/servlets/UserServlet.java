@@ -18,6 +18,12 @@ import java.util.Objects;
  */
 public class UserServlet extends HttpServlet {
 
+    private UserService userService;
+
+    public UserServlet() {
+        userService = new UserService();
+    }
+
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
 
@@ -62,7 +68,6 @@ public class UserServlet extends HttpServlet {
     }
 
     public void viewAllUsers(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        UserService userService = new UserService();
         List<User> userList = userService.findAll();
 
         HttpSession session = request.getSession();
@@ -76,7 +81,6 @@ public class UserServlet extends HttpServlet {
         User user = new User();
         user.setName(name);
 
-        UserService userService = new UserService();
         userService.saveOrUpdate(user);
         response.sendRedirect("view_user.jsp");
     }
@@ -85,7 +89,6 @@ public class UserServlet extends HttpServlet {
         long userId = Long.parseLong(request.getParameter("userId"));
         String name = request.getParameter("name");
 
-        UserService userService = new UserService();
         User user = userService.find(userId);
         user.setName(name);
 
