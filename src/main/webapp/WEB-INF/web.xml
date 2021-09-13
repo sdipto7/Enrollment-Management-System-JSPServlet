@@ -20,7 +20,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>logout</servlet-name>
-        <url-pattern>/LogoutButton</url-pattern>
+        <url-pattern>/logout</url-pattern>
     </servlet-mapping>
 
     <servlet>

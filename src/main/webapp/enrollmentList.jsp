@@ -44,8 +44,10 @@
         </form>
         <br>
     </c:when></c:choose>
-<form action="/LogoutButton">
-    <input type="submit" value="Logout">
-</form>
+
+<c:url var="logoutLink" value="/logout">
+</c:url>
+<a href="${logoutLink}"><c:out value="Logout"/></a>
+
 </body>
 </html>
