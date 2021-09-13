@@ -16,6 +16,8 @@ CREATE TABLE enrollment(
     user_id INT NOT NULL,
     course_id INT NOT NULL,
     PRIMARY KEY("id")
+    FOREIGN KEY (user_id) REFERENCES user(id)
+    FOREIGN KEY (course_id) REFERENCES course(id)
 );
 
 CREATE TABLE credential (
