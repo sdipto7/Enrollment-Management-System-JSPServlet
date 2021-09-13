@@ -22,7 +22,7 @@ public class User implements Serializable {
     @Column(name = "name")
     private String name;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.REMOVE)
     private Credential credential;
 
     @OneToMany(mappedBy = "user",
