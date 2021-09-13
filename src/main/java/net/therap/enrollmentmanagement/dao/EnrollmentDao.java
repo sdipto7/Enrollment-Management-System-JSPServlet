@@ -4,7 +4,6 @@ import net.therap.enrollmentmanagement.domain.Enrollment;
 import net.therap.enrollmentmanagement.util.EntityManagerSingleton;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
 import java.util.List;
 import java.util.Objects;
 
@@ -14,42 +13,40 @@ import java.util.Objects;
  */
 public class EnrollmentDao {
 
-    private EntityManager entityManager;
+    private EntityManager em;
 
     public EnrollmentDao() {
-        entityManager = EntityManagerSingleton.getInstance().getEntityManager();
-    }
-
-    public List<Enrollment> findAll() {
-        Query query = entityManager.createQuery("from Enrollment");
-
-        return query.getResultList();
+        em = EntityManagerSingleton.getInstance().getEntityManager();
     }
 
     public Enrollment find(long id) {
-        return entityManager.find(Enrollment.class, id);
+        return em.find(Enrollment.class, id);
+    }
+
+    public List<Enrollment> findAll() {
+        return em.createQuery("FROM Enrollment").getResultList();
     }
 
     public void saveOrUpdate(Enrollment enrollment) {
-        entityManager.getTransaction().begin();
+        em.getTransaction().begin();
 
         if (enrollment.isNew()) {
-            entityManager.persist(enrollment);
+            em.persist(enrollment);
         } else {
-            entityManager.merge(enrollment);
+            em.merge(enrollment);
         }
-        entityManager.flush();
-        entityManager.getTransaction().commit();
+        em.flush();
+        em.getTransaction().commit();
     }
 
     public void delete(long id) {
-        Enrollment enrollment = entityManager.getReference(Enrollment.class, id);
+        Enrollment enrollment = em.getReference(Enrollment.class, id);
 
-        entityManager.getTransaction().begin();
+        em.getTransaction().begin();
         if (Objects.nonNull(enrollment)) {
-            entityManager.remove(enrollment);
+            em.remove(enrollment);
         }
-        entityManager.flush();
-        entityManager.getTransaction().commit();
+        em.flush();
+        em.getTransaction().commit();
     }
 }
