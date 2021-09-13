@@ -27,7 +27,7 @@ public class EnrollmentDao {
         return em.createQuery("FROM Enrollment").getResultList();
     }
 
-    public void saveOrUpdate(Enrollment enrollment) {
+    public Enrollment saveOrUpdate(Enrollment enrollment) {
         em.getTransaction().begin();
 
         if (enrollment.isNew()) {
@@ -37,6 +37,8 @@ public class EnrollmentDao {
         }
         em.flush();
         em.getTransaction().commit();
+
+        return enrollment;
     }
 
     public void delete(long id) {

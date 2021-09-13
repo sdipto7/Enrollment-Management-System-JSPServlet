@@ -13,46 +13,48 @@ import java.util.Objects;
  */
 public class UserDao {
 
-    private EntityManager entityManager;
+    private EntityManager em;
 
     public UserDao() {
-        entityManager = EntityManagerSingleton.getInstance().getEntityManager();
+        em = EntityManagerSingleton.getInstance().getEntityManager();
     }
 
     public User find(long id) {
-        return entityManager.find(User.class, id);
+        return em.find(User.class, id);
     }
 
     public List<User> findAll() {
-        return entityManager.createQuery("FROM User").getResultList();
+        return em.createQuery("FROM User").getResultList();
     }
 
     public User findByName(String name) {
-        return (User) entityManager.createQuery("FROM User u WHERE u.name = :name")
+        return (User) em.createQuery("FROM User u WHERE u.name = :name")
                 .setParameter("name", name)
                 .getSingleResult();
     }
 
-    public void saveOrUpdate(User user) {
-        entityManager.getTransaction().begin();
+    public User saveOrUpdate(User user) {
+        em.getTransaction().begin();
 
         if (user.isNew()) {
-            entityManager.persist(user);
+            em.persist(user);
         } else {
-            entityManager.merge(user);
+            em.merge(user);
         }
-        entityManager.flush();
-        entityManager.getTransaction().commit();
+        em.flush();
+        em.getTransaction().commit();
+
+        return user;
     }
 
     public void delete(long id) {
-        User user = entityManager.getReference(User.class, id);
+        User user = em.getReference(User.class, id);
 
-        entityManager.getTransaction().begin();
+        em.getTransaction().begin();
         if (Objects.nonNull(user)) {
-            entityManager.remove(user);
+            em.remove(user);
         }
-        entityManager.flush();
-        entityManager.getTransaction().commit();
+        em.flush();
+        em.getTransaction().commit();
     }
 }

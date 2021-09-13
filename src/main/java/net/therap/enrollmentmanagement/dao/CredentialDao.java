@@ -13,14 +13,14 @@ import java.util.List;
  */
 public class CredentialDao {
 
-    private EntityManager entityManager;
+    private EntityManager em;
 
     public CredentialDao() {
-        entityManager = EntityManagerSingleton.getInstance().getEntityManager();
+        em = EntityManagerSingleton.getInstance().getEntityManager();
     }
 
     public Credential check(String name, String password) {
-        Query query = entityManager.createQuery("FROM Credential c WHERE c.name = :name AND c.password = :password");
+        Query query = em.createQuery("FROM Credential c WHERE c.name = :name AND c.password = :password");
         query.setParameter("name", name);
         query.setParameter("password", password);
 

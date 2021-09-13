@@ -33,7 +33,7 @@ public class CourseDao {
                 .getSingleResult();
     }
 
-    public void saveOrUpdate(Course course) {
+    public Course saveOrUpdate(Course course) {
         em.getTransaction().begin();
 
         if (course.isNew()) {
@@ -43,6 +43,8 @@ public class CourseDao {
         }
         em.flush();
         em.getTransaction().commit();
+
+        return course;
     }
 
     public void delete(long id) {
