@@ -21,7 +21,7 @@
             <td>${course.courseCode}</td>
             <td>${course.courseTitle}</td>
             <c:choose>
-                <c:when test="${role == admin}">
+                <c:if test="${role == admin}">
                     <td>
                         <a href="${updateLink}">Edit</a>
                         |
@@ -29,7 +29,7 @@
                            onclick="if(!(confirm('Are you sure to delete the selected course ?'))) return false">
                             Delete</a>
                     </td>
-                </c:when></c:choose>
+                </c:if></c:choose>
         </tr>
     </c:forEach>
 </table>

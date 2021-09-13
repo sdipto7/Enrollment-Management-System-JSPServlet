@@ -25,7 +25,7 @@
             <td>${enrollment.course.courseCode}</td>
             <td>${enrollment.course.courseTitle}</td>
             <c:choose>
-                <c:when test="${role == admin}">
+                <c:if test="${role == admin}">
                     <td>
                         <a href="${updateLink}">Edit</a>
                         |
@@ -33,7 +33,7 @@
                            onclick="if(!(confirm('Are you sure to delete the selected enrollment ?'))) return false">
                             Delete</a>
                     </td>
-                </c:when></c:choose>
+                </c:if></c:choose>
         </tr>
     </c:forEach>
 </table>
