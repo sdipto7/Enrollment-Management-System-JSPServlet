@@ -24,8 +24,14 @@ public class EnrollmentServlet extends HttpServlet {
 
     private EnrollmentService enrollmentService;
 
+    private UserService userService;
+
+    private CourseService courseService;
+
     public EnrollmentServlet() {
         enrollmentService = new EnrollmentService();
+        userService = new UserService();
+        courseService = new CourseService();
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -45,11 +51,11 @@ public class EnrollmentServlet extends HttpServlet {
                     break;
 
                 case "/addEnrollment":
-                    addEnrollment(request, response);
+                    add(request, response);
                     break;
 
                 case "/deleteEnrollment":
-                    deleteEnrollment(request, response);
+                    delete(request, response);
                     break;
 
                 case "/updateEnrollmentLink":
@@ -60,7 +66,7 @@ public class EnrollmentServlet extends HttpServlet {
                     break;
 
                 case "/updateEnrollment":
-                    updateEnrollment(request, response);
+                    update(request, response);
                     break;
 
                 default:
@@ -79,46 +85,47 @@ public class EnrollmentServlet extends HttpServlet {
         response.sendRedirect("view_enrollment.jsp");
     }
 
-    public void addEnrollment(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void add(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String name = request.getParameter("name");
         String courseCode = request.getParameter("courseCode");
 
-        UserService userService = new UserService();
         User user = userService.findByName(name);
-        CourseService courseService = new CourseService();
         Course course = courseService.findByCourseCode(courseCode);
 
-        Enrollment enrollment = new Enrollment();
-        enrollment.setUser(user);
-        enrollment.setCourse(course);
-
-        enrollmentService.saveOrUpdate(enrollment);
+        enrollmentService.saveOrUpdate(getEnrollment(0, user, course));
         response.sendRedirect("view_enrollment.jsp");
     }
 
-    public void updateEnrollment(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void update(HttpServletRequest request, HttpServletResponse response) throws IOException {
         long enrollmentId = Long.parseLong(request.getParameter("enrollmentId"));
         String name = request.getParameter("name");
         String courseCode = request.getParameter("courseCode");
 
-        UserService userService = new UserService();
         User user = userService.findByName(name);
-        CourseService courseService = new CourseService();
         Course course = courseService.findByCourseCode(courseCode);
-        
-        Enrollment enrollment = enrollmentService.find(enrollmentId);
-        enrollment.setUser(user);
-        enrollment.setCourse(course);
 
-        enrollmentService.saveOrUpdate(enrollment);
+        enrollmentService.saveOrUpdate(getEnrollment(enrollmentId, user, course));
         response.sendRedirect("view_enrollment.jsp");
     }
 
-    public void deleteEnrollment(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void delete(HttpServletRequest request, HttpServletResponse response) throws IOException {
         long enrollmentId = Long.parseLong(request.getParameter("enrollmentId"));
 
         EnrollmentDao enrollmentDao = new EnrollmentDao();
         enrollmentDao.delete(enrollmentId);
         response.sendRedirect("view_enrollment.jsp");
+    }
+
+    public Enrollment getEnrollment(long enrollmentId, User user, Course course) {
+        Enrollment enrollment;
+        if (enrollmentId > 0) {
+            enrollment = enrollmentService.find(enrollmentId);
+        } else {
+            enrollment = new Enrollment();
+        }
+        enrollment.setUser(user);
+        enrollment.setCourse(course);
+
+        return enrollment;
     }
 }

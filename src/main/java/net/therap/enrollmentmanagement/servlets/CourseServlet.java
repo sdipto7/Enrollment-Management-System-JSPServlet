@@ -102,7 +102,6 @@ public class CourseServlet extends HttpServlet {
 
     public Course getCourse(long courseId, String courseCode, String courseTitle) {
         Course course;
-
         if (courseId > 0) {
             course = courseService.find(courseId);
         } else {
