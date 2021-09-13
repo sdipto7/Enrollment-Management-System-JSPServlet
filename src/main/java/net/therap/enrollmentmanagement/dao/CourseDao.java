@@ -4,7 +4,6 @@ import net.therap.enrollmentmanagement.domain.Course;
 import net.therap.enrollmentmanagement.util.EntityManagerSingleton;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
 import java.util.List;
 import java.util.Objects;
 
@@ -14,50 +13,46 @@ import java.util.Objects;
  */
 public class CourseDao {
 
-    private EntityManager entityManager;
+    private EntityManager em;
 
     public CourseDao() {
-        entityManager = EntityManagerSingleton.getInstance().getEntityManager();
-    }
-
-    public List<Course> findAll() {
-        Query query = entityManager.createQuery("from Course");
-
-        return query.getResultList();
+        em = EntityManagerSingleton.getInstance().getEntityManager();
     }
 
     public Course find(long id) {
-        return entityManager.find(Course.class, id);
+        return em.find(Course.class, id);
+    }
+
+    public List<Course> findAll() {
+        return em.createQuery("FROM Course").getResultList();
     }
 
     public Course findByCourseCode(String courseCode) {
-        Query query = entityManager.createQuery("from Course c where c.courseCode = :code");
-        query.setParameter("code", courseCode);
-        List<Course> courseList = query.getResultList();
-
-        return courseList.isEmpty() ? null : courseList.get(0);
+        return (Course) em.createQuery("FROM Course c WHERE c.courseCode = :code")
+                .setParameter("code", courseCode)
+                .getSingleResult();
     }
 
     public void saveOrUpdate(Course course) {
-        entityManager.getTransaction().begin();
+        em.getTransaction().begin();
 
         if (course.isNew()) {
-            entityManager.persist(course);
+            em.persist(course);
         } else {
-            entityManager.merge(course);
+            em.merge(course);
         }
-        entityManager.flush();
-        entityManager.getTransaction().commit();
+        em.flush();
+        em.getTransaction().commit();
     }
 
     public void delete(long id) {
-        Course course = entityManager.getReference(Course.class, id);
+        Course course = em.getReference(Course.class, id);
 
-        entityManager.getTransaction().begin();
+        em.getTransaction().begin();
         if (Objects.nonNull(course)) {
-            entityManager.remove(course);
+            em.remove(course);
         }
-        entityManager.flush();
-        entityManager.getTransaction().commit();
+        em.flush();
+        em.getTransaction().commit();
     }
 }
