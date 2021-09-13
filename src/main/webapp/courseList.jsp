@@ -29,7 +29,8 @@
                            onclick="if(!(confirm('Are you sure to delete the selected course ?'))) return false">
                             Delete</a>
                     </td>
-                </c:if></c:choose>
+                </c:if>
+            </c:choose>
         </tr>
     </c:forEach>
 </table>
