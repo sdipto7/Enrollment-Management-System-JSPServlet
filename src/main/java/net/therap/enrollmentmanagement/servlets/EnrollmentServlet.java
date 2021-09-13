@@ -22,6 +22,12 @@ import java.util.Objects;
  */
 public class EnrollmentServlet extends HttpServlet {
 
+    private EnrollmentService enrollmentService;
+
+    public EnrollmentServlet() {
+        enrollmentService = new EnrollmentService();
+    }
+
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
 
@@ -66,7 +72,6 @@ public class EnrollmentServlet extends HttpServlet {
     }
 
     public void viewAllEnrollment(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        EnrollmentService enrollmentService = new EnrollmentService();
         List<Enrollment> enrollmentList = enrollmentService.findAll();
 
         HttpSession session = request.getSession();
@@ -87,7 +92,6 @@ public class EnrollmentServlet extends HttpServlet {
         enrollment.setUser(user);
         enrollment.setCourse(course);
 
-        EnrollmentService enrollmentService = new EnrollmentService();
         enrollmentService.saveOrUpdate(enrollment);
         response.sendRedirect("view_enrollment.jsp");
     }
@@ -101,8 +105,7 @@ public class EnrollmentServlet extends HttpServlet {
         User user = userService.findByName(name);
         CourseService courseService = new CourseService();
         Course course = courseService.findByCourseCode(courseCode);
-
-        EnrollmentService enrollmentService = new EnrollmentService();
+        
         Enrollment enrollment = enrollmentService.find(enrollmentId);
         enrollment.setUser(user);
         enrollment.setCourse(course);

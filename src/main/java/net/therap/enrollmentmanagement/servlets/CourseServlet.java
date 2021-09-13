@@ -41,11 +41,11 @@ public class CourseServlet extends HttpServlet {
                     break;
 
                 case "/addCourse":
-                    addCourse(request, response);
+                    add(request, response);
                     break;
 
                 case "/deleteCourse":
-                    deleteCourse(request, response);
+                    delete(request, response);
                     break;
 
                 case "/updateCourseLink":
@@ -56,7 +56,7 @@ public class CourseServlet extends HttpServlet {
                     break;
 
                 case "/updateCourse":
-                    updateCourse(request, response);
+                    update(request, response);
                     break;
 
                 default:
@@ -75,36 +75,42 @@ public class CourseServlet extends HttpServlet {
         response.sendRedirect("view_course.jsp");
     }
 
-    public void addCourse(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void add(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String courseCode = request.getParameter("courseCode");
         String courseTitle = request.getParameter("courseTitle");
 
-        Course course = new Course();
-        course.setCourseCode(courseCode);
-        course.setCourseTitle(courseTitle);
-
-        courseService.saveOrUpdate(course);
+        courseService.saveOrUpdate(getCourse(0, courseCode, courseTitle));
         response.sendRedirect("view_course.jsp");
     }
 
-    public void updateCourse(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void update(HttpServletRequest request, HttpServletResponse response) throws IOException {
         long courseId = Long.parseLong(request.getParameter("courseId"));
         String courseCode = request.getParameter("courseCode");
         String courseTitle = request.getParameter("courseTitle");
 
-        Course course = courseService.find(courseId);
-        course.setCourseCode(courseCode);
-        course.setCourseTitle(courseTitle);
-
-        courseService.saveOrUpdate(course);
+        courseService.saveOrUpdate(getCourse(courseId, courseCode, courseTitle));
         response.sendRedirect("view_course.jsp");
     }
 
-    public void deleteCourse(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void delete(HttpServletRequest request, HttpServletResponse response) throws IOException {
         long courseId = Long.parseLong(request.getParameter("courseId"));
 
         CourseDao courseDao = new CourseDao();
         courseDao.delete(courseId);
         response.sendRedirect("view_course.jsp");
+    }
+
+    public Course getCourse(long courseId, String courseCode, String courseTitle) {
+        Course course;
+
+        if (courseId > 0) {
+            course = courseService.find(courseId);
+        } else {
+            course = new Course();
+        }
+        course.setCourseCode(courseCode);
+        course.setCourseTitle(courseTitle);
+
+        return course;
     }
 }
