@@ -37,7 +37,7 @@ public class UserServlet extends HttpServlet {
 
                 case "/addUserButton":
                     session.setAttribute("action", "add");
-                    response.sendRedirect("save_user.jsp");
+                    response.sendRedirect("user.jsp");
                     break;
 
                 case "/addUser":
@@ -52,7 +52,7 @@ public class UserServlet extends HttpServlet {
                     long userId = Long.parseLong(request.getParameter("userId"));
                     session.setAttribute("action", "update");
                     session.setAttribute("userId", userId);
-                    response.sendRedirect("save_user.jsp");
+                    response.sendRedirect("user.jsp");
                     break;
 
                 case "/updateUser":
@@ -63,7 +63,7 @@ public class UserServlet extends HttpServlet {
                     break;
             }
         } else {
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("login.jsp");
         }
     }
 
@@ -72,14 +72,14 @@ public class UserServlet extends HttpServlet {
 
         HttpSession session = request.getSession();
         session.setAttribute("user_list", userList);
-        response.sendRedirect("view_user.jsp");
+        response.sendRedirect("userList.jsp");
     }
 
     public void add(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String name = request.getParameter("name");
 
         userService.saveOrUpdate(getUser(0, name));
-        response.sendRedirect("view_user.jsp");
+        response.sendRedirect("userList.jsp");
     }
 
     public void update(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -87,7 +87,7 @@ public class UserServlet extends HttpServlet {
         String name = request.getParameter("name");
 
         userService.saveOrUpdate(getUser(userId, name));
-        response.sendRedirect("view_user.jsp");
+        response.sendRedirect("userList.jsp");
     }
 
     public void delete(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -95,7 +95,7 @@ public class UserServlet extends HttpServlet {
 
         UserDao userDao = new UserDao();
         userDao.delete(userId);
-        response.sendRedirect("view_user.jsp");
+        response.sendRedirect("userList.jsp");
     }
 
     public User getUser(long userId, String name) {

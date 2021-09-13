@@ -37,7 +37,7 @@ public class CourseServlet extends HttpServlet {
 
                 case "/addCourseButton":
                     session.setAttribute("action", "add");
-                    response.sendRedirect("save_course.jsp");
+                    response.sendRedirect("course.jsp");
                     break;
 
                 case "/addCourse":
@@ -52,7 +52,7 @@ public class CourseServlet extends HttpServlet {
                     long courseId = Long.parseLong(request.getParameter("courseId"));
                     session.setAttribute("action", "update");
                     session.setAttribute("courseId", courseId);
-                    response.sendRedirect("save_course.jsp");
+                    response.sendRedirect("course.jsp");
                     break;
 
                 case "/updateCourse":
@@ -63,7 +63,7 @@ public class CourseServlet extends HttpServlet {
                     break;
             }
         } else {
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("login.jsp");
         }
     }
 
@@ -72,7 +72,7 @@ public class CourseServlet extends HttpServlet {
 
         HttpSession session = request.getSession();
         session.setAttribute("course_list", courseList);
-        response.sendRedirect("view_course.jsp");
+        response.sendRedirect("courseList.jsp");
     }
 
     public void add(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -80,7 +80,7 @@ public class CourseServlet extends HttpServlet {
         String courseTitle = request.getParameter("courseTitle");
 
         courseService.saveOrUpdate(getCourse(0, courseCode, courseTitle));
-        response.sendRedirect("view_course.jsp");
+        response.sendRedirect("courseList.jsp");
     }
 
     public void update(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -89,7 +89,7 @@ public class CourseServlet extends HttpServlet {
         String courseTitle = request.getParameter("courseTitle");
 
         courseService.saveOrUpdate(getCourse(courseId, courseCode, courseTitle));
-        response.sendRedirect("view_course.jsp");
+        response.sendRedirect("courseList.jsp");
     }
 
     public void delete(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -97,7 +97,7 @@ public class CourseServlet extends HttpServlet {
 
         CourseDao courseDao = new CourseDao();
         courseDao.delete(courseId);
-        response.sendRedirect("view_course.jsp");
+        response.sendRedirect("courseList.jsp");
     }
 
     public Course getCourse(long courseId, String courseCode, String courseTitle) {

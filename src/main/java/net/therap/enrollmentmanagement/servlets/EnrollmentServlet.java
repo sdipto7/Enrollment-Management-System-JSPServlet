@@ -47,7 +47,7 @@ public class EnrollmentServlet extends HttpServlet {
 
                 case "/addEnrollmentButton":
                     session.setAttribute("action", "add");
-                    response.sendRedirect("save_enrollment.jsp");
+                    response.sendRedirect("enrollment.jsp");
                     break;
 
                 case "/addEnrollment":
@@ -62,7 +62,7 @@ public class EnrollmentServlet extends HttpServlet {
                     long enrollmentId = Long.parseLong(request.getParameter("enrollmentId"));
                     session.setAttribute("action", "update");
                     session.setAttribute("enrollmentId", enrollmentId);
-                    response.sendRedirect("save_enrollment.jsp");
+                    response.sendRedirect("enrollment.jsp");
                     break;
 
                 case "/updateEnrollment":
@@ -73,7 +73,7 @@ public class EnrollmentServlet extends HttpServlet {
                     break;
             }
         } else {
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("login.jsp");
         }
     }
 
@@ -82,7 +82,7 @@ public class EnrollmentServlet extends HttpServlet {
 
         HttpSession session = request.getSession();
         session.setAttribute("enrollment_list", enrollmentList);
-        response.sendRedirect("view_enrollment.jsp");
+        response.sendRedirect("enrollmentList.jsp");
     }
 
     public void add(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -93,7 +93,7 @@ public class EnrollmentServlet extends HttpServlet {
         Course course = courseService.findByCourseCode(courseCode);
 
         enrollmentService.saveOrUpdate(getEnrollment(0, user, course));
-        response.sendRedirect("view_enrollment.jsp");
+        response.sendRedirect("enrollmentList.jsp");
     }
 
     public void update(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -105,7 +105,7 @@ public class EnrollmentServlet extends HttpServlet {
         Course course = courseService.findByCourseCode(courseCode);
 
         enrollmentService.saveOrUpdate(getEnrollment(enrollmentId, user, course));
-        response.sendRedirect("view_enrollment.jsp");
+        response.sendRedirect("enrollmentList.jsp");
     }
 
     public void delete(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -113,7 +113,7 @@ public class EnrollmentServlet extends HttpServlet {
 
         EnrollmentDao enrollmentDao = new EnrollmentDao();
         enrollmentDao.delete(enrollmentId);
-        response.sendRedirect("view_enrollment.jsp");
+        response.sendRedirect("enrollmentList.jsp");
     }
 
     public Enrollment getEnrollment(long enrollmentId, User user, Course course) {

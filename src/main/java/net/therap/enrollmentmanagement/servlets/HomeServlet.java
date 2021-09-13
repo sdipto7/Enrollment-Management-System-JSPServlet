@@ -19,7 +19,7 @@ public class HomeServlet extends HttpServlet {
         HttpSession session = request.getSession();
 
         if (Objects.isNull(session.getAttribute("userName"))) {
-            response.sendRedirect("index.jsp");
+            response.sendRedirect("login.jsp");
         } else {
             out.println("Welcome " + session.getAttribute("userName"));
         }
