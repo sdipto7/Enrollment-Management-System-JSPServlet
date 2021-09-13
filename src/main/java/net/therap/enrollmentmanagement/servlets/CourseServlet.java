@@ -18,6 +18,12 @@ import java.util.Objects;
  */
 public class CourseServlet extends HttpServlet {
 
+    private CourseService courseService;
+
+    public CourseServlet() {
+        courseService = new CourseService();
+    }
+
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
 
@@ -62,7 +68,6 @@ public class CourseServlet extends HttpServlet {
     }
 
     public void viewAllCourse(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        CourseService courseService = new CourseService();
         List<Course> courseList = courseService.findAll();
 
         HttpSession session = request.getSession();
@@ -78,7 +83,6 @@ public class CourseServlet extends HttpServlet {
         course.setCourseCode(courseCode);
         course.setCourseTitle(courseTitle);
 
-        CourseService courseService = new CourseService();
         courseService.saveOrUpdate(course);
         response.sendRedirect("view_course.jsp");
     }
@@ -88,7 +92,6 @@ public class CourseServlet extends HttpServlet {
         String courseCode = request.getParameter("courseCode");
         String courseTitle = request.getParameter("courseTitle");
 
-        CourseService courseService = new CourseService();
         Course course = courseService.find(courseId);
         course.setCourseCode(courseCode);
         course.setCourseTitle(courseTitle);
