@@ -20,17 +20,15 @@
         <tr>
             <td>${user.id}</td>
             <td>${user.name}</td>
-            <c:choose>
-                <c:if test="${role == admin}">
-                    <td>
-                        <a href="${updateLink}">Edit</a>
-                        |
-                        <a href="${deleteLink}"
-                           onclick="if(!(confirm('Are you sure to delete the selected user ?'))) return false">
-                            Delete</a>
-                    </td>
-                </c:if>
-            </c:choose>
+            <c:if test="${role == admin}">
+                <td>
+                    <a href="${updateLink}">Edit</a>
+                    |
+                    <a href="${deleteLink}"
+                       onclick="if(!(confirm('Are you sure to delete the selected user ?'))) return false">
+                        Delete</a>
+                </td>
+            </c:if>
         </tr>
     </c:forEach>
 </table>

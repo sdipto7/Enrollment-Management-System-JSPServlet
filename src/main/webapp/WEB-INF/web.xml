@@ -33,164 +33,91 @@
     </servlet-mapping>
 
     <servlet>
-        <servlet-name>view_courses</servlet-name>
+        <servlet-name>course</servlet-name>
         <servlet-class>net.therap.enrollmentmanagement.servlets.CourseServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>view_courses</servlet-name>
+        <servlet-name>course</servlet-name>
         <url-pattern>/viewCourseButton</url-pattern>
     </servlet-mapping>
-
-    <servlet>
-        <servlet-name>add_course_button</servlet-name>
-        <servlet-class>net.therap.enrollmentmanagement.servlets.CourseServlet</servlet-class>
-    </servlet>
     <servlet-mapping>
-        <servlet-name>add_course_button</servlet-name>
+        <servlet-name>course</servlet-name>
         <url-pattern>/addCourseButton</url-pattern>
     </servlet-mapping>
-
-    <servlet>
-        <servlet-name>add_course</servlet-name>
-        <servlet-class>net.therap.enrollmentmanagement.servlets.CourseServlet</servlet-class>
-    </servlet>
     <servlet-mapping>
-        <servlet-name>add_course</servlet-name>
+        <servlet-name>course</servlet-name>
         <url-pattern>/addCourse</url-pattern>
     </servlet-mapping>
-
-    <servlet>
-        <servlet-name>update_course_link</servlet-name>
-        <servlet-class>net.therap.enrollmentmanagement.servlets.CourseServlet</servlet-class>
-    </servlet>
     <servlet-mapping>
-        <servlet-name>update_course_link</servlet-name>
+        <servlet-name>course</servlet-name>
         <url-pattern>/updateCourseLink</url-pattern>
     </servlet-mapping>
-
-    <servlet>
-        <servlet-name>update_course</servlet-name>
-        <servlet-class>net.therap.enrollmentmanagement.servlets.CourseServlet</servlet-class>
-    </servlet>
     <servlet-mapping>
-        <servlet-name>update_course</servlet-name>
+        <servlet-name>course</servlet-name>
         <url-pattern>/updateCourse</url-pattern>
     </servlet-mapping>
-
-    <servlet>
-        <servlet-name>delete_course</servlet-name>
-        <servlet-class>net.therap.enrollmentmanagement.servlets.CourseServlet</servlet-class>
-    </servlet>
     <servlet-mapping>
-        <servlet-name>delete_course</servlet-name>
+        <servlet-name>course</servlet-name>
         <url-pattern>/deleteCourse</url-pattern>
     </servlet-mapping>
 
+
     <servlet>
-        <servlet-name>view_users</servlet-name>
+        <servlet-name>user</servlet-name>
         <servlet-class>net.therap.enrollmentmanagement.servlets.UserServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>view_users</servlet-name>
+        <servlet-name>user</servlet-name>
         <url-pattern>/viewUserButton</url-pattern>
     </servlet-mapping>
-
-    <servlet>
-        <servlet-name>add_user_button</servlet-name>
-        <servlet-class>net.therap.enrollmentmanagement.servlets.UserServlet</servlet-class>
-    </servlet>
     <servlet-mapping>
-        <servlet-name>add_user_button</servlet-name>
+        <servlet-name>user</servlet-name>
         <url-pattern>/addUserButton</url-pattern>
     </servlet-mapping>
-
-    <servlet>
-        <servlet-name>add_user</servlet-name>
-        <servlet-class>net.therap.enrollmentmanagement.servlets.UserServlet</servlet-class>
-    </servlet>
     <servlet-mapping>
-        <servlet-name>add_user</servlet-name>
+        <servlet-name>user</servlet-name>
         <url-pattern>/addUser</url-pattern>
     </servlet-mapping>
-
-    <servlet>
-        <servlet-name>update_user_link</servlet-name>
-        <servlet-class>net.therap.enrollmentmanagement.servlets.UserServlet</servlet-class>
-    </servlet>
     <servlet-mapping>
-        <servlet-name>update_user_link</servlet-name>
+        <servlet-name>user</servlet-name>
         <url-pattern>/updateUserLink</url-pattern>
     </servlet-mapping>
-
-    <servlet>
-        <servlet-name>update_user</servlet-name>
-        <servlet-class>net.therap.enrollmentmanagement.servlets.UserServlet</servlet-class>
-    </servlet>
     <servlet-mapping>
-        <servlet-name>update_user</servlet-name>
+        <servlet-name>user</servlet-name>
         <url-pattern>/updateUser</url-pattern>
     </servlet-mapping>
-
-    <servlet>
-        <servlet-name>delete_user</servlet-name>
-        <servlet-class>net.therap.enrollmentmanagement.servlets.UserServlet</servlet-class>
-    </servlet>
     <servlet-mapping>
-        <servlet-name>delete_user</servlet-name>
+        <servlet-name>user</servlet-name>
         <url-pattern>/deleteUser</url-pattern>
     </servlet-mapping>
 
+
     <servlet>
-        <servlet-name>view_enrollment</servlet-name>
+        <servlet-name>enrollment</servlet-name>
         <servlet-class>net.therap.enrollmentmanagement.servlets.EnrollmentServlet</servlet-class>
     </servlet>
     <servlet-mapping>
-        <servlet-name>view_enrollment</servlet-name>
+        <servlet-name>enrollment</servlet-name>
         <url-pattern>/viewEnrollmentButton</url-pattern>
     </servlet-mapping>
-
-    <servlet>
-        <servlet-name>add_enrollment_button</servlet-name>
-        <servlet-class>net.therap.enrollmentmanagement.servlets.EnrollmentServlet</servlet-class>
-    </servlet>
     <servlet-mapping>
-        <servlet-name>add_enrollment_button</servlet-name>
+        <servlet-name>enrollment</servlet-name>
         <url-pattern>/addEnrollmentButton</url-pattern>
     </servlet-mapping>
-
-    <servlet>
-        <servlet-name>add_enrollment</servlet-name>
-        <servlet-class>net.therap.enrollmentmanagement.servlets.EnrollmentServlet</servlet-class>
-    </servlet>
     <servlet-mapping>
-        <servlet-name>add_enrollment</servlet-name>
+        <servlet-name>enrollment</servlet-name>
         <url-pattern>/addEnrollment</url-pattern>
     </servlet-mapping>
-
-    <servlet>
-        <servlet-name>update_enrollment_link</servlet-name>
-        <servlet-class>net.therap.enrollmentmanagement.servlets.EnrollmentServlet</servlet-class>
-    </servlet>
     <servlet-mapping>
-        <servlet-name>update_enrollment_link</servlet-name>
+        <servlet-name>enrollment</servlet-name>
         <url-pattern>/updateEnrollmentLink</url-pattern>
     </servlet-mapping>
-
-    <servlet>
-        <servlet-name>update_enrollment</servlet-name>
-        <servlet-class>net.therap.enrollmentmanagement.servlets.EnrollmentServlet</servlet-class>
-    </servlet>
     <servlet-mapping>
-        <servlet-name>update_enrollment</servlet-name>
+        <servlet-name>enrollment</servlet-name>
         <url-pattern>/updateEnrollment</url-pattern>
     </servlet-mapping>
-
-    <servlet>
-        <servlet-name>delete_enrollment</servlet-name>
-        <servlet-class>net.therap.enrollmentmanagement.servlets.EnrollmentServlet</servlet-class>
-    </servlet>
     <servlet-mapping>
-        <servlet-name>delete_enrollment</servlet-name>
+        <servlet-name>enrollment</servlet-name>
         <url-pattern>/deleteEnrollment</url-pattern>
     </servlet-mapping>
 
