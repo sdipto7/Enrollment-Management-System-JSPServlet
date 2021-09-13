@@ -55,6 +55,6 @@ public class Enrollment implements Comparable<Enrollment>, Serializable {
 
     @Override
     public int compareTo(Enrollment that) {
-        return (int) this.getUser().getId() - (int) that.getUser().getId();
+        return this.getUser().getName().compareTo(that.getUser().getName());
     }
 }
