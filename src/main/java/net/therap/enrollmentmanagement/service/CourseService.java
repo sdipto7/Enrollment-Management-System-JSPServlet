@@ -17,12 +17,12 @@ public class CourseService {
         courseDao = new CourseDao();
     }
 
-    public List<Course> findAll() {
-        return courseDao.findAll();
-    }
-
     public Course find(long id) {
         return courseDao.find(id);
+    }
+
+    public List<Course> findAll() {
+        return courseDao.findAll();
     }
 
     public Course findByCourseCode(String courseCode) {

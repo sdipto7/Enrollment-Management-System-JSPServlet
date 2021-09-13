@@ -17,12 +17,12 @@ public class UserService {
         userDao = new UserDao();
     }
 
-    public List<User> findAll() {
-        return userDao.findAll();
-    }
-
     public User find(long id) {
         return userDao.find(id);
+    }
+
+    public List<User> findAll() {
+        return userDao.findAll();
     }
 
     public User findByName(String name) {

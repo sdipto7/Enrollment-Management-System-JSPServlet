@@ -17,12 +17,12 @@ public class EnrollmentService {
         enrollmentDao = new EnrollmentDao();
     }
 
-    public List<Enrollment> findAll() {
-        return enrollmentDao.findAll();
-    }
-
     public Enrollment find(long id) {
         return enrollmentDao.find(id);
+    }
+
+    public List<Enrollment> findAll() {
+        return enrollmentDao.findAll();
     }
 
     public void saveOrUpdate(Enrollment enrollment) {
