@@ -22,11 +22,11 @@
             <td>${user.name}</td>
             <c:if test="${role == admin}">
                 <td>
-                    <a href="${updateLink}">Edit</a>
+                    <a href="${updateLink}"><c:out value="Edit"/></a>
                     |
                     <a href="${deleteLink}"
                        onclick="if(!(confirm('Are you sure to delete the selected user ?'))) return false">
-                        Delete</a>
+                        <c:out value="Delete"/></a>
                 </td>
             </c:if>
         </tr>

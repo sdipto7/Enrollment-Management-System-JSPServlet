@@ -8,8 +8,8 @@
 <c:choose>
     <c:when test="${action == 'add'}">
         <form action="/addCourse">
-            Course Code:<input type="text" name="courseCode"><br>
-            Course Title:<input type="text" name="courseTitle"><br>
+            <c:out value="Course Code: "/><input type="text" name="courseCode"><br>
+            <c:out value="Course Title: "/><input type="text" name="courseTitle"><br>
             <input type="submit" value="ADD"><br>
         </form>
     </c:when>
@@ -17,8 +17,8 @@
     <c:when test="${action == 'update'}">
         <form action="/updateCourse">
             <input type="hidden" name="courseId" value="${courseId}"/>
-            Course Code:<input type="text" name="courseCode"><br>
-            Course Title:<input type="text" name="courseTitle"><br>
+            <c:out value="Course Code: "/><input type="text" name="courseCode"><br>
+            <c:out value="Course Title: "/><input type="text" name="courseTitle"><br>
             <input type="submit" value="UPDATE"><br>
         </form>
     </c:when>

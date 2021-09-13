@@ -5,7 +5,7 @@
     <title>Admin Home</title>
 </head>
 <body>
-<h1>WELCOME ${userName}</h1><br>
+<h1><c:out value="WELCOME ${userName}"/></h1><br>
 
 <form action="/viewCourseButton">
     <input type="submit" value="View Courses">
