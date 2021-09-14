@@ -21,6 +21,10 @@ public class UserService {
         return userDao.find(id);
     }
 
+    public User findByCredential(String userName, String password) {
+        return userDao.findByCredential(userName, password);
+    }
+
     public List<User> findAll() {
         return userDao.findAll();
     }

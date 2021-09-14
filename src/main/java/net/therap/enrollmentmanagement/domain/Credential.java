@@ -17,15 +17,15 @@ public class Credential implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(name = "name")
-    private String name;
+    @Column(name = "user_name")
+    private String userName;
 
     @Column(name = "password")
     private String password;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "role")
-    private Role role;
+    @OneToOne(cascade = CascadeType.REMOVE)
+    @JoinColumn(name = "user_id")
+    private User user;
 
     public long getId() {
         return id;
@@ -36,11 +36,11 @@ public class Credential implements Serializable {
     }
 
     public String getName() {
-        return name;
+        return userName;
     }
 
     public void setName(String name) {
-        this.name = name;
+        this.userName = name;
     }
 
     public String getPassword() {
@@ -51,11 +51,11 @@ public class Credential implements Serializable {
         this.password = password;
     }
 
-    public Role getRole() {
-        return role;
+    public User getUser() {
+        return user;
     }
 
-    public void setRole(Role role) {
-        this.role = role;
+    public void setUser(User user) {
+        this.user = user;
     }
 }

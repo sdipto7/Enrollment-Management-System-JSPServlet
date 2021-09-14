@@ -26,7 +26,7 @@
             <td><c:out value="${enrollment.user.name}"/></td>
             <td><c:out value="${enrollment.course.courseCode}"/></td>
             <td><c:out value="${enrollment.course.courseTitle}"/></td>
-            <c:if test="${role == admin}">
+            <c:if test="${currentUser.role == 'ADMIN'}">
                 <td>
                     <a href="${updateLink}"><c:out value="Edit"/></a>
                     |
@@ -39,7 +39,7 @@
     </c:forEach>
 </table>
 <br>
-<c:if test="${role == admin}">
+<c:if test="${currentUser.role == 'ADMIN'}">
     <c:url var="addLink" value="/enrollment">
         <c:param name="action" value="addClick"/>
     </c:url>

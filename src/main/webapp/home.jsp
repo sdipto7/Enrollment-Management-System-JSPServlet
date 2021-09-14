@@ -5,7 +5,7 @@
     <title>Admin Home</title>
 </head>
 <body>
-<h1><c:out value="WELCOME ${userName}"/></h1><br>
+<h1><c:out value="WELCOME ${user.name}"/></h1><br>
 
 <c:url var="courseViewLink" value="/course">
     <c:param name="action" value="courseList"/>

@@ -7,7 +7,7 @@
 </head>
 <body>
 <form action="loginForm" method="post">
-    <c:out value="Name: "/><input type="text" name="name"><br><br>
+    <c:out value="Username: "/><input type="text" name="userName"><br><br>
     <c:out value="Password: "/><input type="password" name="password"><br><br>
     <input type="submit" value="login">
 </form>

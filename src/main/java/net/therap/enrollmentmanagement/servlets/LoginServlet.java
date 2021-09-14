@@ -1,8 +1,7 @@
 package net.therap.enrollmentmanagement.servlets;
 
-import net.therap.enrollmentmanagement.dao.CredentialDao;
-import net.therap.enrollmentmanagement.domain.Credential;
-import net.therap.enrollmentmanagement.domain.Role;
+import net.therap.enrollmentmanagement.domain.User;
+import net.therap.enrollmentmanagement.service.UserService;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,6 +12,12 @@ import java.util.Objects;
 
 public class LoginServlet extends HttpServlet {
 
+    private UserService userService;
+
+    public LoginServlet() {
+        userService = new UserService();
+    }
+
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.sendRedirect("login.jsp");
     }
@@ -20,22 +25,14 @@ public class LoginServlet extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
         response.setContentType("text/html");
 
-        String name = request.getParameter("name");
+        String userName = request.getParameter("userName");
         String password = request.getParameter("password");
-        CredentialDao credentialDao = new CredentialDao();
-        Credential credential = credentialDao.check(name, password);
 
-        if (Objects.nonNull(credential)) {
+        User user = userService.findByCredential(userName, password);
+
+        if (Objects.nonNull(user)) {
             HttpSession session = request.getSession();
-            session.setAttribute("userName", name);
-            session.setAttribute("admin", Role.ADMIN);
-            session.setAttribute("user", Role.USER);
-
-            if (credential.getRole() == Role.ADMIN) {
-                session.setAttribute("role", Role.ADMIN);
-            } else {
-                session.setAttribute("role", Role.USER);
-            }
+            session.setAttribute("currentUser", user);
             response.sendRedirect("home.jsp");
         } else {
             response.sendRedirect("login.jsp");

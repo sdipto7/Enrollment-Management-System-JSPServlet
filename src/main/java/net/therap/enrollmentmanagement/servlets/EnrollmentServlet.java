@@ -37,7 +37,7 @@ public class EnrollmentServlet extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
 
-        if (Objects.nonNull(session.getAttribute("userName"))) {
+        if (Objects.nonNull(session.getAttribute("currentUser"))) {
             String action = request.getParameter("action");
 
             switch (action) {

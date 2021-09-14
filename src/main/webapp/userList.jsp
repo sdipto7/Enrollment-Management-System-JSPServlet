@@ -22,7 +22,7 @@
         <tr>
             <td><c:out value="${user.id}"/></td>
             <td><c:out value="${user.name}"/></td>
-            <c:if test="${role == admin}">
+            <c:if test="${currentUser.role == 'ADMIN'}">
                 <td>
                     <a href="${updateLink}"><c:out value="Edit"/></a>
                     |
@@ -35,7 +35,7 @@
     </c:forEach>
 </table>
 <br>
-<c:if test="${role == admin}">
+<c:if test="${currentUser.role == 'ADMIN'}">
     <c:url var="addLink" value="/user">
         <c:param name="action" value="addClick"/>
     </c:url>

@@ -22,7 +22,11 @@ public class User implements Serializable {
     @Column(name = "name")
     private String name;
 
-    @OneToOne(cascade = CascadeType.REMOVE)
+    @Enumerated(EnumType.STRING)
+    @Column(name = "role")
+    private Role role;
+
+    @OneToOne(mappedBy = "user")
     private Credential credential;
 
     @OneToMany(mappedBy = "user",
@@ -52,6 +56,14 @@ public class User implements Serializable {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 
     @Override
