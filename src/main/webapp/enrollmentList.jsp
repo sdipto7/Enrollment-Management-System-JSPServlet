@@ -12,7 +12,7 @@
         <th>Course Code</th>
         <th>Course Title</th>
     </tr>
-    <c:forEach var="enrollment" items="${enrollment_list}">
+    <c:forEach var="enrollment" items="${enrollmentList}">
         <c:url var="updateLink" value="/enrollment">
             <c:param name="action" value="updateClick"/>
             <c:param name="enrollmentId" value="${enrollment.id}"/>

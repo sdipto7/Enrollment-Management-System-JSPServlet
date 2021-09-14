@@ -10,7 +10,7 @@
         <th>Id</th>
         <th>Name</th>
     </tr>
-    <c:forEach var="user" items="${user_list}">
+    <c:forEach var="user" items="${userList}">
         <c:url var="updateLink" value="/user">
             <c:param name="userId" value="${user.id}"/>
             <c:param name="action" value="updateClick"/>

@@ -74,7 +74,7 @@ public class CourseServlet extends HttpServlet {
         List<Course> courseList = courseService.findAll();
 
         HttpSession session = request.getSession();
-        session.setAttribute("course_list", courseList);
+        session.setAttribute("courseList", courseList);
     }
 
     public void add(HttpServletRequest request, HttpServletResponse response) throws IOException {

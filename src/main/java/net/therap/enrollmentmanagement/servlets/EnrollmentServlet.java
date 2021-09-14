@@ -85,7 +85,7 @@ public class EnrollmentServlet extends HttpServlet {
         List<Enrollment> enrollmentList = enrollmentService.findAll();
 
         HttpSession session = request.getSession();
-        session.setAttribute("enrollment_list", enrollmentList);
+        session.setAttribute("enrollmentList", enrollmentList);
     }
 
     public void add(HttpServletRequest request, HttpServletResponse response) throws IOException {

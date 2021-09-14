@@ -75,7 +75,7 @@ public class UserServlet extends HttpServlet {
         List<User> userList = userService.findAll();
 
         HttpSession session = request.getSession();
-        session.setAttribute("user_list", userList);
+        session.setAttribute("userList", userList);
     }
 
     public void add(HttpServletRequest request, HttpServletResponse response) throws IOException {
