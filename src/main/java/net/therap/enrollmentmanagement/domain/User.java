@@ -11,7 +11,7 @@ import java.util.Objects;
  */
 @Entity
 @Table(name = "user")
-public class User implements Serializable {
+public class User extends Persistent implements Serializable {
 
     private static final long serialVersionUID = 1L;
 

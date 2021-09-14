@@ -9,7 +9,7 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "enrollment")
-public class Enrollment implements Comparable<Enrollment>, Serializable {
+public class Enrollment extends Persistent implements Comparable<Enrollment>, Serializable {
 
     private static final long serialVersionUID = 1L;
 

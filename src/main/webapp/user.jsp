@@ -11,6 +11,9 @@
     <label>
         Name: <input type="text" name="name">
     </label><br><br>
+    <label>
+        Role: <input type="text" name="role">
+    </label><br><br>
     <c:choose>
         <c:when test="${action == 'add'}">
             <input type="submit" value="Add"/><br><br>

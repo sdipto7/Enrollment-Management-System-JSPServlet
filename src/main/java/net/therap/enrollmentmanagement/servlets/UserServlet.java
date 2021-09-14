@@ -1,6 +1,7 @@
 package net.therap.enrollmentmanagement.servlets;
 
 import net.therap.enrollmentmanagement.dao.UserDao;
+import net.therap.enrollmentmanagement.domain.Role;
 import net.therap.enrollmentmanagement.domain.User;
 import net.therap.enrollmentmanagement.service.UserService;
 
@@ -80,15 +81,19 @@ public class UserServlet extends HttpServlet {
 
     public void add(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String name = request.getParameter("name");
+        String roleRequested = request.getParameter("role");
+        Role role = roleRequested.equalsIgnoreCase("ADMIN") ? Role.ADMIN : Role.USER;
 
-        userService.saveOrUpdate(getUser(0, name));
+        userService.saveOrUpdate(getUser(0, name, role));
     }
 
     public void update(HttpServletRequest request, HttpServletResponse response) throws IOException {
         long userId = Long.parseLong(request.getParameter("userId"));
         String name = request.getParameter("name");
+        String roleRequested = request.getParameter("role");
+        Role role = roleRequested.equalsIgnoreCase("ADMIN") ? Role.ADMIN : Role.USER;
 
-        userService.saveOrUpdate(getUser(userId, name));
+        userService.saveOrUpdate(getUser(userId, name, role));
     }
 
     public void delete(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -98,7 +103,7 @@ public class UserServlet extends HttpServlet {
         userDao.delete(userId);
     }
 
-    public User getUser(long userId, String name) {
+    public User getUser(long userId, String name, Role role) {
         User user;
         if (userId > 0) {
             user = userService.find(userId);
@@ -106,6 +111,7 @@ public class UserServlet extends HttpServlet {
             user = new User();
         }
         user.setName(name);
+        user.setRole(role);
 
         return user;
     }

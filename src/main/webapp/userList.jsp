@@ -9,6 +9,9 @@
     <tr>
         <th>Id</th>
         <th>Name</th>
+        <c:if test="${currentUser.role == 'ADMIN'}">
+            <th>Role</th>
+        </c:if>
     </tr>
     <c:forEach var="user" items="${userList}">
         <c:url var="updateLink" value="/user">
@@ -23,6 +26,7 @@
             <td><c:out value="${user.id}"/></td>
             <td><c:out value="${user.name}"/></td>
             <c:if test="${currentUser.role == 'ADMIN'}">
+                <td><c:out value="${user.role}"/></td>
                 <td>
                     <a href="${updateLink}"><c:out value="Edit"/></a>
                     |

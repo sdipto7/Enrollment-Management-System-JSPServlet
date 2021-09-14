@@ -1,7 +1,6 @@
 package net.therap.enrollmentmanagement.domain;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.List;
 
@@ -11,7 +10,7 @@ import java.util.List;
  */
 @Entity
 @Table(name = "course")
-public class Course implements Serializable {
+public class Course extends Persistent implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
