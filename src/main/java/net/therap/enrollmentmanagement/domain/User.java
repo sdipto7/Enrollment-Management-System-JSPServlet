@@ -26,7 +26,7 @@ public class User implements Serializable {
     private Credential credential;
 
     @OneToMany(mappedBy = "user",
-            fetch = FetchType.EAGER,
+            fetch = FetchType.LAZY,
             cascade = CascadeType.REMOVE)
     private List<Enrollment> enrollmentList;
 

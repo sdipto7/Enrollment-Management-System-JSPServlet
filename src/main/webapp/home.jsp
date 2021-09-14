@@ -7,19 +7,25 @@
 <body>
 <h1><c:out value="WELCOME ${userName}"/></h1><br>
 
-<form action="/viewCourseButton">
-    <input type="submit" value="View Courses">
-</form>
+<c:url var="courseViewLink" value="/course">
+    <c:param name="action" value="courseList"/>
+</c:url>
+<a href="${courseViewLink}"><c:out value="View Courses"/></a>
+<br>
 <br>
 
-<form action="/viewUserButton">
-    <input type="submit" value="View Users">
-</form>
+<c:url var="userViewLink" value="/user">
+    <c:param name="action" value="userList"/>
+</c:url>
+<a href="${userViewLink}"><c:out value="View Users"/></a>
+<br>
 <br>
 
-<form action="/viewEnrollmentButton">
-    <input type="submit" value="View Enrollments">
-</form>
+<c:url var="enrollmentViewLink" value="/enrollment">
+    <c:param name="action" value="enrollmentList"/>
+</c:url>
+<a href="${enrollmentViewLink}"><c:out value="View Enrollments"/></a>
+<br>
 <br>
 
 <c:url var="logoutLink" value="/logout">

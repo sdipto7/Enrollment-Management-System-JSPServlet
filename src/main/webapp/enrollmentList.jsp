@@ -13,17 +13,19 @@
         <th>Course Title</th>
     </tr>
     <c:forEach var="enrollment" items="${enrollment_list}">
-        <c:url var="updateLink" value="/updateEnrollmentLink">
+        <c:url var="updateLink" value="/enrollment">
+            <c:param name="action" value="updateClick"/>
             <c:param name="enrollmentId" value="${enrollment.id}"/>
         </c:url>
-        <c:url var="deleteLink" value="/deleteEnrollment">
+        <c:url var="deleteLink" value="/enrollment">
+            <c:param name="action" value="delete"/>
             <c:param name="enrollmentId" value="${enrollment.id}"/>
         </c:url>
         <tr>
-            <td>${enrollment.user.id}</td>
-            <td>${enrollment.user.name}</td>
-            <td>${enrollment.course.courseCode}</td>
-            <td>${enrollment.course.courseTitle}</td>
+            <td><c:out value="${enrollment.user.id}"/></td>
+            <td><c:out value="${enrollment.user.name}"/></td>
+            <td><c:out value="${enrollment.course.courseCode}"/></td>
+            <td><c:out value="${enrollment.course.courseTitle}"/></td>
             <c:if test="${role == admin}">
                 <td>
                     <a href="${updateLink}"><c:out value="Edit"/></a>
@@ -37,13 +39,13 @@
     </c:forEach>
 </table>
 <br>
-<c:choose>
-    <c:when test="${role == admin}">
-        <form action="/addEnrollmentButton">
-            <input type="submit" value="Add Enrollment">
-        </form>
-        <br>
-    </c:when></c:choose>
+<c:if test="${role == admin}">
+    <c:url var="addLink" value="/enrollment">
+        <c:param name="action" value="addClick"/>
+    </c:url>
+    <a href="${addLink}"><c:out value="Add Enrollment"/></a>
+    <br><br>
+</c:if>
 
 <c:url var="logoutLink" value="/logout">
 </c:url>

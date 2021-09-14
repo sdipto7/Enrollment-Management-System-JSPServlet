@@ -5,26 +5,26 @@
     <title>Edit Course</title>
 </head>
 <body>
-<c:choose>
-    <c:when test="${action == 'add'}">
-        <form action="/addCourse">
-            <c:out value="Course Code: "/><input type="text" name="courseCode"><br>
-            <c:out value="Course Title: "/><input type="text" name="courseTitle"><br>
-            <input type="submit" value="ADD"><br>
-        </form>
-    </c:when>
+<form action="/course">
+    <input type="hidden" value="${action}" name="action">
+    <input type="hidden" value="${courseId}" name="courseId">
+    <label>
+        Course Code: <input type="text" name="courseCode"/>
+    </label><br><br>
+    <label>
+        Course Title:<input type="text" name="courseTitle"/>
+    </label><br><br>
+    <c:choose>
+        <c:when test="${action == 'add'}">
+            <input type="submit" value="Add"/><br><br>
+        </c:when>
+        <c:otherwise>
+            <input type="submit" value="Update"/><br><br>
+        </c:otherwise>
+    </c:choose>
+</form>
 
-    <c:when test="${action == 'update'}">
-        <form action="/updateCourse">
-            <input type="hidden" name="courseId" value="${courseId}"/>
-            <c:out value="Course Code: "/><input type="text" name="courseCode"><br>
-            <c:out value="Course Title: "/><input type="text" name="courseTitle"><br>
-            <input type="submit" value="UPDATE"><br>
-        </form>
-    </c:when>
-</c:choose>
 <br>
-
 <c:url var="logoutLink" value="/logout">
 </c:url>
 <a href="${logoutLink}"><c:out value="Logout"/></a>

@@ -13,6 +13,10 @@
         <servlet-name>login</servlet-name>
         <url-pattern>/loginForm</url-pattern>
     </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>login</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
 
     <servlet>
         <servlet-name>logout</servlet-name>
@@ -38,29 +42,8 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>course</servlet-name>
-        <url-pattern>/viewCourseButton</url-pattern>
+        <url-pattern>/course</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>course</servlet-name>
-        <url-pattern>/addCourseButton</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>course</servlet-name>
-        <url-pattern>/addCourse</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>course</servlet-name>
-        <url-pattern>/updateCourseLink</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>course</servlet-name>
-        <url-pattern>/updateCourse</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>course</servlet-name>
-        <url-pattern>/deleteCourse</url-pattern>
-    </servlet-mapping>
-
 
     <servlet>
         <servlet-name>user</servlet-name>
@@ -68,29 +51,8 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>user</servlet-name>
-        <url-pattern>/viewUserButton</url-pattern>
+        <url-pattern>/user</url-pattern>
     </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>user</servlet-name>
-        <url-pattern>/addUserButton</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>user</servlet-name>
-        <url-pattern>/addUser</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>user</servlet-name>
-        <url-pattern>/updateUserLink</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>user</servlet-name>
-        <url-pattern>/updateUser</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>user</servlet-name>
-        <url-pattern>/deleteUser</url-pattern>
-    </servlet-mapping>
-
 
     <servlet>
         <servlet-name>enrollment</servlet-name>
@@ -98,27 +60,7 @@
     </servlet>
     <servlet-mapping>
         <servlet-name>enrollment</servlet-name>
-        <url-pattern>/viewEnrollmentButton</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>enrollment</servlet-name>
-        <url-pattern>/addEnrollmentButton</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>enrollment</servlet-name>
-        <url-pattern>/addEnrollment</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>enrollment</servlet-name>
-        <url-pattern>/updateEnrollmentLink</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>enrollment</servlet-name>
-        <url-pattern>/updateEnrollment</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>enrollment</servlet-name>
-        <url-pattern>/deleteEnrollment</url-pattern>
+        <url-pattern>/enrollment</url-pattern>
     </servlet-mapping>
 
 </web-app>

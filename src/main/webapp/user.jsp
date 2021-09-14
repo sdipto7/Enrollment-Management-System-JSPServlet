@@ -5,24 +5,23 @@
     <title>Edit User</title>
 </head>
 <body>
-<c:choose>
-    <c:when test="${action == 'add'}">
-        <form action="/addUser">
-            <c:out value="Name: "/><input type="text" name="name"><br>
-            <input type="submit" value="ADD"><br>
-        </form>
-    </c:when>
+<form action="/user">
+    <input type="hidden" name="userId" value="${userId}"/>
+    <input type="hidden" value="${action}" name="action">
+    <label>
+        Name: <input type="text" name="name">
+    </label><br><br>
+    <c:choose>
+        <c:when test="${action == 'add'}">
+            <input type="submit" value="Add"/><br><br>
+        </c:when>
+        <c:otherwise>
+            <input type="submit" value="Update"><br><br>
+        </c:otherwise>
+    </c:choose>
+</form>
 
-    <c:when test="${action == 'update'}">
-        <form action="/updateUser">
-            <input type="hidden" name="userId" value="${userId}"/>
-            <c:out value="Name: "/><input type="text" name="name"><br>
-            <input type="submit" value="UPDATE"><br>
-        </form>
-    </c:when>
-</c:choose>
 <br>
-
 <c:url var="logoutLink" value="/logout">
 </c:url>
 <a href="${logoutLink}"><c:out value="Logout"/></a>

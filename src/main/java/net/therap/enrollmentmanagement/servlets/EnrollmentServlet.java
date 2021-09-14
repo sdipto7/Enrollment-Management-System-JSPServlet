@@ -38,35 +38,39 @@ public class EnrollmentServlet extends HttpServlet {
         HttpSession session = request.getSession();
 
         if (Objects.nonNull(session.getAttribute("userName"))) {
-            String uri = request.getServletPath();
+            String action = request.getParameter("action");
 
-            switch (uri) {
-                case "/viewEnrollmentButton":
+            switch (action) {
+                case "enrollmentList":
                     viewAllEnrollment(request, response);
+                    response.sendRedirect("enrollmentList.jsp");
                     break;
 
-                case "/addEnrollmentButton":
+                case "addClick":
                     session.setAttribute("action", "add");
                     response.sendRedirect("enrollment.jsp");
                     break;
 
-                case "/addEnrollment":
+                case "add":
                     add(request, response);
+                    response.sendRedirect("enrollmentList.jsp");
                     break;
 
-                case "/deleteEnrollment":
+                case "delete":
                     delete(request, response);
+                    response.sendRedirect("enrollmentList.jsp");
                     break;
 
-                case "/updateEnrollmentLink":
+                case "updateClick":
                     long enrollmentId = Long.parseLong(request.getParameter("enrollmentId"));
                     session.setAttribute("action", "update");
                     session.setAttribute("enrollmentId", enrollmentId);
                     response.sendRedirect("enrollment.jsp");
                     break;
 
-                case "/updateEnrollment":
+                case "update":
                     update(request, response);
+                    response.sendRedirect("enrollmentList.jsp");
                     break;
 
                 default:
@@ -82,7 +86,6 @@ public class EnrollmentServlet extends HttpServlet {
 
         HttpSession session = request.getSession();
         session.setAttribute("enrollment_list", enrollmentList);
-        response.sendRedirect("enrollmentList.jsp");
     }
 
     public void add(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -93,7 +96,6 @@ public class EnrollmentServlet extends HttpServlet {
         Course course = courseService.findByCourseCode(courseCode);
 
         enrollmentService.saveOrUpdate(getEnrollment(0, user, course));
-        response.sendRedirect("enrollmentList.jsp");
     }
 
     public void update(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -105,7 +107,6 @@ public class EnrollmentServlet extends HttpServlet {
         Course course = courseService.findByCourseCode(courseCode);
 
         enrollmentService.saveOrUpdate(getEnrollment(enrollmentId, user, course));
-        response.sendRedirect("enrollmentList.jsp");
     }
 
     public void delete(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -113,7 +114,6 @@ public class EnrollmentServlet extends HttpServlet {
 
         EnrollmentDao enrollmentDao = new EnrollmentDao();
         enrollmentDao.delete(enrollmentId);
-        response.sendRedirect("enrollmentList.jsp");
     }
 
     public Enrollment getEnrollment(long enrollmentId, User user, Course course) {

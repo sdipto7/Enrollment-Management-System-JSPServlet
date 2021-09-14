@@ -28,35 +28,39 @@ public class UserServlet extends HttpServlet {
         HttpSession session = request.getSession();
 
         if (Objects.nonNull(session.getAttribute("userName"))) {
-            String uri = request.getServletPath();
+            String action = request.getParameter("action");
 
-            switch (uri) {
-                case "/viewUserButton":
+            switch (action) {
+                case "userList":
                     viewAllUsers(request, response);
+                    response.sendRedirect("userList.jsp");
                     break;
 
-                case "/addUserButton":
+                case "addClick":
                     session.setAttribute("action", "add");
                     response.sendRedirect("user.jsp");
                     break;
 
-                case "/addUser":
+                case "add":
                     add(request, response);
+                    response.sendRedirect("userList.jsp");
                     break;
 
-                case "/deleteUser":
+                case "delete":
                     delete(request, response);
+                    response.sendRedirect("userList.jsp");
                     break;
 
-                case "/updateUserLink":
+                case "updateClick":
                     long userId = Long.parseLong(request.getParameter("userId"));
                     session.setAttribute("action", "update");
                     session.setAttribute("userId", userId);
                     response.sendRedirect("user.jsp");
                     break;
 
-                case "/updateUser":
+                case "update":
                     update(request, response);
+                    response.sendRedirect("userList.jsp");
                     break;
 
                 default:
@@ -72,14 +76,12 @@ public class UserServlet extends HttpServlet {
 
         HttpSession session = request.getSession();
         session.setAttribute("user_list", userList);
-        response.sendRedirect("userList.jsp");
     }
 
     public void add(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String name = request.getParameter("name");
 
         userService.saveOrUpdate(getUser(0, name));
-        response.sendRedirect("userList.jsp");
     }
 
     public void update(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -87,7 +89,6 @@ public class UserServlet extends HttpServlet {
         String name = request.getParameter("name");
 
         userService.saveOrUpdate(getUser(userId, name));
-        response.sendRedirect("userList.jsp");
     }
 
     public void delete(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -95,7 +96,6 @@ public class UserServlet extends HttpServlet {
 
         UserDao userDao = new UserDao();
         userDao.delete(userId);
-        response.sendRedirect("userList.jsp");
     }
 
     public User getUser(long userId, String name) {

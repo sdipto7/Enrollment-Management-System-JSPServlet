@@ -11,15 +11,18 @@
         <th>Course Title</th>
     </tr>
     <c:forEach var="course" items="${course_list}">
-        <c:url var="updateLink" value="/updateCourseLink">
+        <c:url var="updateLink" value="/course">
             <c:param name="courseId" value="${course.id}"/>
+            <c:param name="action" value="updateClick"/>
         </c:url>
-        <c:url var="deleteLink" value="/deleteCourse">
+        <c:url var="deleteLink" value="/course">
             <c:param name="courseId" value="${course.id}"/>
+            <c:param name="action" value="delete"/>
         </c:url>
         <tr>
-            <td>${course.courseCode}</td>
-            <td>${course.courseTitle}</td>
+
+            <td><c:out value="${course.courseCode}"/></td>
+            <td><c:out value="${course.courseTitle}"/></td>
             <c:if test="${role == admin}">
                 <td>
                     <a href="${updateLink}"><c:out value="Edit"/></a>
@@ -33,13 +36,13 @@
     </c:forEach>
 </table>
 <br>
-<c:choose>
-    <c:when test="${role == admin}">
-        <form action="/addCourseButton">
-            <input type="submit" value="Add Course">
-        </form>
-        <br>
-    </c:when></c:choose>
+<c:if test="${role == admin}">
+    <c:url var="addLink" value="/course">
+        <c:param name="action" value="addClick"/>
+    </c:url>
+    <a href="${addLink}"><c:out value="Add Course"/></a>
+    <br><br>
+</c:if>
 
 <c:url var="logoutLink" value="/logout">
 </c:url>

@@ -1,6 +1,7 @@
 package net.therap.enrollmentmanagement.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.List;
 
@@ -25,7 +26,7 @@ public class Course implements Serializable {
     private String courseTitle;
 
     @OneToMany(mappedBy = "course",
-            fetch = FetchType.EAGER,
+            fetch = FetchType.LAZY,
             cascade = CascadeType.REMOVE)
     private List<Enrollment> enrollmentList;
 
