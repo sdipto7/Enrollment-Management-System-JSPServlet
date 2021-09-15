@@ -22,7 +22,9 @@
             <c:param name="enrollmentId" value="${enrollment.id}"/>
         </c:url>
         <tr>
+            <c:if test="${currentUser.role == 'ADMIN'}">
             <td><c:out value="${enrollment.user.id}"/></td>
+            </c:if>
             <td><c:out value="${enrollment.user.name}"/></td>
             <td><c:out value="${enrollment.course.courseCode}"/></td>
             <td><c:out value="${enrollment.course.courseTitle}"/></td>
@@ -47,8 +49,7 @@
     <br><br>
 </c:if>
 
-<c:url var="logoutLink" value="/logout">
-</c:url>
+<c:url var="logoutLink" value="/logout"/>
 <a href="${logoutLink}"><c:out value="Logout"/></a>
 
 </body>

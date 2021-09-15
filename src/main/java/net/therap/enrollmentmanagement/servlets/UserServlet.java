@@ -24,6 +24,24 @@ public class UserServlet extends HttpServlet {
         userService = new UserService();
     }
 
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String action = request.getParameter("action");
+        switch (action) {
+            case "add":
+                save(request, response);
+                response.sendRedirect("userList.jsp");
+                break;
+            case "update":
+                update(request, response);
+                response.sendRedirect("userList.jsp");
+                break;
+
+            default:
+                break;
+
+        }
+    }
+
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
 
@@ -41,10 +59,10 @@ public class UserServlet extends HttpServlet {
                     response.sendRedirect("user.jsp");
                     break;
 
-                case "add":
-                    save(request, response);
-                    response.sendRedirect("userList.jsp");
-                    break;
+//                case "add":
+//                    save(request, response);
+//                    response.sendRedirect("userList.jsp");
+//                    break;
 
                 case "delete":
                     delete(request, response);
@@ -58,13 +76,13 @@ public class UserServlet extends HttpServlet {
                     response.sendRedirect("user.jsp");
                     break;
 
-                case "update":
-                    update(request, response);
-                    response.sendRedirect("userList.jsp");
-                    break;
-
-                default:
-                    break;
+//                case "update":
+//                    update(request, response);
+//                    response.sendRedirect("userList.jsp");
+//                    break;
+//
+//                default:
+//                    break;
             }
         } else {
             response.sendRedirect("login.jsp");

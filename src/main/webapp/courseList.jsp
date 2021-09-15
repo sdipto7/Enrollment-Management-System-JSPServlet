@@ -20,7 +20,6 @@
             <c:param name="action" value="delete"/>
         </c:url>
         <tr>
-
             <td><c:out value="${course.courseCode}"/></td>
             <td><c:out value="${course.courseTitle}"/></td>
             <c:if test="${currentUser.role == 'ADMIN'}">
@@ -44,8 +43,7 @@
     <br><br>
 </c:if>
 
-<c:url var="logoutLink" value="/logout">
-</c:url>
+<c:url var="logoutLink" value="/logout"/>
 <a href="${logoutLink}"><c:out value="Logout"/></a>
 
 </body>

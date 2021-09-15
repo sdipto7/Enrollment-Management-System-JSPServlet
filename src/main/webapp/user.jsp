@@ -5,7 +5,7 @@
     <title>Edit User</title>
 </head>
 <body>
-<form action="/user">
+<form action="/user" method="post">
     <input type="hidden" name="userId" value="${userId}"/>
     <input type="hidden" value="${action}" name="action">
     <label>
@@ -25,8 +25,7 @@
 </form>
 
 <br>
-<c:url var="logoutLink" value="/logout">
-</c:url>
+<c:url var="logoutLink" value="/logout"/>
 <a href="${logoutLink}"><c:out value="Logout"/></a>
 
 </body>
