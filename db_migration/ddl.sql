@@ -32,6 +32,8 @@ CREATE TABLE credential (
     user_name VARCHAR(100) NOT NULL,
     password VARCHAR(45) NOT NULL,
     user_id INT NOT NULL,
+    created DATETIME NULL,
+    updated DATETIME NULL,
     PRIMARY KEY ("id"),
     CONSTRAINT uk_user_id UNIQUE (user_id),
     CONSTRAINT  uk_user_name UNIQUE (user_name)

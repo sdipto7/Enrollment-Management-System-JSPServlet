@@ -14,10 +14,6 @@ public class Course extends Persistent implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
     @Column(name = "course_code")
     private String courseCode;
 
@@ -28,14 +24,6 @@ public class Course extends Persistent implements Serializable {
             fetch = FetchType.LAZY,
             cascade = CascadeType.REMOVE)
     private List<Enrollment> enrollmentList;
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public String getCourseCode() {
         return courseCode;

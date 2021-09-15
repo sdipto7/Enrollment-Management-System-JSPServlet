@@ -10,22 +10,35 @@ import java.util.Date;
 @MappedSuperclass
 public abstract class Persistent {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private long id;
+
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created")
-    private Date created;
+    protected Date created;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "updated")
-    private Date updated;
+    protected Date updated;
 
     @PrePersist
-    protected void onCreate() {
+    private void onCreate() {
         updated = created = new Date();
     }
 
     @PreUpdate
-    protected void onUpdate() {
+    private void onUpdate() {
         updated = new Date();
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public Date getCreated() {

@@ -9,13 +9,9 @@ import java.io.Serializable;
  */
 @Entity
 @Table(name = "credential")
-public class Credential implements Serializable {
+public class Credential extends Persistent implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
 
     @Column(name = "user_name")
     private String userName;
@@ -26,14 +22,6 @@ public class Credential implements Serializable {
     @OneToOne(cascade = CascadeType.REMOVE)
     @JoinColumn(name = "user_id")
     private User user;
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public String getName() {
         return userName;

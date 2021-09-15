@@ -1,6 +1,9 @@
 package net.therap.enrollmentmanagement.domain;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import java.io.Serializable;
 
 /**
@@ -13,10 +16,6 @@ public class Enrollment extends Persistent implements Comparable<Enrollment>, Se
 
     private static final long serialVersionUID = 1L;
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
@@ -24,14 +23,6 @@ public class Enrollment extends Persistent implements Comparable<Enrollment>, Se
     @ManyToOne
     @JoinColumn(name = "course_id")
     private Course course;
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     public User getUser() {
         return user;
