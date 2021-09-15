@@ -32,7 +32,7 @@ CREATE TABLE credential (
     user_name VARCHAR(100) NOT NULL,
     password VARCHAR(45) NOT NULL,
     user_id INT NOT NULL,
-    PRIMARY KEY ("id")
-    CONSTRAINT user_id_UNIQUE UNIQUE (user_id),
-    CONSTRAINT  user_name_UNIQUE UNIQUE (user_name)
+    PRIMARY KEY ("id"),
+    CONSTRAINT uk_user_id UNIQUE (user_id),
+    CONSTRAINT  uk_user_name UNIQUE (user_name)
 );
