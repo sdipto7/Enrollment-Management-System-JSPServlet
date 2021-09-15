@@ -80,8 +80,7 @@ public class UserServlet extends HttpServlet {
 
     public void save(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String name = request.getParameter("name");
-        String roleRequested = request.getParameter("role");
-        Role role = roleRequested.equalsIgnoreCase("ADMIN") ? Role.ADMIN : Role.USER;
+        String role = request.getParameter("role");
 
         userService.saveOrUpdate(getOrCreateUser(0, name, role));
     }
@@ -89,8 +88,7 @@ public class UserServlet extends HttpServlet {
     public void update(HttpServletRequest request, HttpServletResponse response) throws IOException {
         long userId = Long.parseLong(request.getParameter("userId"));
         String name = request.getParameter("name");
-        String roleRequested = request.getParameter("role");
-        Role role = roleRequested.equalsIgnoreCase("ADMIN") ? Role.ADMIN : Role.USER;
+        String role = request.getParameter("role");
 
         userService.saveOrUpdate(getOrCreateUser(userId, name, role));
     }
@@ -101,7 +99,7 @@ public class UserServlet extends HttpServlet {
         userService.delete(userId);
     }
 
-    public User getOrCreateUser(long userId, String name, Role role) {
+    public User getOrCreateUser(long userId, String name, String role) {
         User user;
         if (userId > 0) {
             user = userService.find(userId);
@@ -109,7 +107,7 @@ public class UserServlet extends HttpServlet {
             user = new User();
         }
         user.setName(name);
-        user.setRole(role);
+        user.setRole(role.equalsIgnoreCase("ADMIN") ? Role.ADMIN : Role.USER);
 
         return user;
     }
