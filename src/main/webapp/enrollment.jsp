@@ -8,12 +8,8 @@
 <form action="/enrollment">
     <input type="hidden" name="enrollmentId" value="${enrollmentId}"/>
     <input type="hidden" value="${action}" name="action">
-    <label>
-        User's Name: <input type="text" name="name"><br><br>
-    </label>
-    <label>
-        Course Code: <input type="text" name="courseCode"><br><br>
-    </label>
+    <label> User's Name: <input type="text" name="name"></label><br><br>
+    <label> Course Code: <input type="text" name="courseCode"></label><br><br>
     <c:choose>
         <c:when test="${action == 'add'}">
             <input type="submit" value="Add"><br><br>

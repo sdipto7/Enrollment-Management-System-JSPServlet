@@ -8,12 +8,8 @@
 <form action="/course">
     <input type="hidden" value="${action}" name="action">
     <input type="hidden" value="${courseId}" name="courseId">
-    <label>
-        Course Code: <input type="text" name="courseCode"/>
-    </label><br><br>
-    <label>
-        Course Title:<input type="text" name="courseTitle"/>
-    </label><br><br>
+    <label> Course Code: <input type="text" name="courseCode"/></label><br><br>
+    <label> Course Title:<input type="text" name="courseTitle"/></label><br><br>
     <c:choose>
         <c:when test="${action == 'add'}">
             <input type="submit" value="Add"/><br><br>

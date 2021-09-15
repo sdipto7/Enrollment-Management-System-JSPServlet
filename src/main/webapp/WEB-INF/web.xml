@@ -62,5 +62,4 @@
         <servlet-name>enrollment</servlet-name>
         <url-pattern>/enrollment</url-pattern>
     </servlet-mapping>
-
 </web-app>
