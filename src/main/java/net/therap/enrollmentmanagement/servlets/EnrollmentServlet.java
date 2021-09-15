@@ -38,12 +38,10 @@ public class EnrollmentServlet extends HttpServlet {
         switch (action) {
             case "add":
                 save(request, response);
-                response.sendRedirect("enrollmentList.jsp");
                 break;
 
             case "update":
                 update(request, response);
-                response.sendRedirect("enrollmentList.jsp");
                 break;
 
             default:
@@ -60,7 +58,6 @@ public class EnrollmentServlet extends HttpServlet {
             switch (action) {
                 case "enrollmentList":
                     viewAllEnrollment(request, response);
-                    response.sendRedirect("enrollmentList.jsp");
                     break;
 
                 case "addClick":
@@ -70,7 +67,6 @@ public class EnrollmentServlet extends HttpServlet {
 
                 case "delete":
                     delete(request, response);
-                    response.sendRedirect("enrollmentList.jsp");
                     break;
 
                 case "updateClick":
@@ -93,6 +89,7 @@ public class EnrollmentServlet extends HttpServlet {
 
         HttpSession session = request.getSession();
         session.setAttribute("enrollmentList", enrollmentList);
+        response.sendRedirect("enrollmentList.jsp");
     }
 
     public void save(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -100,6 +97,7 @@ public class EnrollmentServlet extends HttpServlet {
         String courseCode = request.getParameter("courseCode");
 
         enrollmentService.saveOrUpdate(getOrCreateEnrollment(0, userName, courseCode));
+        response.sendRedirect("enrollmentList.jsp");
     }
 
     public void update(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -108,12 +106,14 @@ public class EnrollmentServlet extends HttpServlet {
         String courseCode = request.getParameter("courseCode");
 
         enrollmentService.saveOrUpdate(getOrCreateEnrollment(enrollmentId, userName, courseCode));
+        response.sendRedirect("enrollmentList.jsp");
     }
 
     public void delete(HttpServletRequest request, HttpServletResponse response) throws IOException {
         long enrollmentId = Long.parseLong(request.getParameter("enrollmentId"));
 
         enrollmentService.delete(enrollmentId);
+        response.sendRedirect("enrollmentList.jsp");
     }
 
     public Enrollment getOrCreateEnrollment(long enrollmentId, String userName, String courseCode) {

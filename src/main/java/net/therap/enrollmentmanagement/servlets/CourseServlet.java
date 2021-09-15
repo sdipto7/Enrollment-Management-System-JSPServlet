@@ -28,12 +28,10 @@ public class CourseServlet extends HttpServlet {
         switch (action) {
             case "add":
                 save(request, response);
-                response.sendRedirect("courseList.jsp");
                 break;
 
             case "update":
                 update(request, response);
-                response.sendRedirect("courseList.jsp");
                 break;
 
             default:
@@ -50,7 +48,6 @@ public class CourseServlet extends HttpServlet {
             switch (action) {
                 case "courseList":
                     viewAllCourse(request, response);
-                    response.sendRedirect("courseList.jsp");
                     break;
 
                 case "addClick":
@@ -60,7 +57,6 @@ public class CourseServlet extends HttpServlet {
 
                 case "delete":
                     delete(request, response);
-                    response.sendRedirect("courseList.jsp");
                     break;
 
                 case "updateClick":
@@ -82,6 +78,7 @@ public class CourseServlet extends HttpServlet {
 
         HttpSession session = request.getSession();
         session.setAttribute("courseList", courseList);
+        response.sendRedirect("courseList.jsp");
     }
 
     public void save(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -89,6 +86,7 @@ public class CourseServlet extends HttpServlet {
         String courseTitle = request.getParameter("courseTitle");
 
         courseService.saveOrUpdate(getOrCreateCourse(0, courseCode, courseTitle));
+        viewAllCourse(request, response);
     }
 
     public void update(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -97,12 +95,14 @@ public class CourseServlet extends HttpServlet {
         String courseTitle = request.getParameter("courseTitle");
 
         courseService.saveOrUpdate(getOrCreateCourse(courseId, courseCode, courseTitle));
+        viewAllCourse(request, response);
     }
 
     public void delete(HttpServletRequest request, HttpServletResponse response) throws IOException {
         long courseId = Long.parseLong(request.getParameter("courseId"));
 
         courseService.delete(courseId);
+        viewAllCourse(request, response);
     }
 
     public Course getOrCreateCourse(long courseId, String courseCode, String courseTitle) {

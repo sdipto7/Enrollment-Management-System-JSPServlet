@@ -29,11 +29,9 @@ public class UserServlet extends HttpServlet {
         switch (action) {
             case "add":
                 save(request, response);
-                response.sendRedirect("userList.jsp");
                 break;
             case "update":
                 update(request, response);
-                response.sendRedirect("userList.jsp");
                 break;
 
             default:
@@ -51,7 +49,6 @@ public class UserServlet extends HttpServlet {
             switch (action) {
                 case "userList":
                     viewAllUsers(request, response);
-                    response.sendRedirect("userList.jsp");
                     break;
 
                 case "addClick":
@@ -61,7 +58,6 @@ public class UserServlet extends HttpServlet {
 
                 case "delete":
                     delete(request, response);
-                    response.sendRedirect("userList.jsp");
                     break;
 
                 case "updateClick":
@@ -84,6 +80,7 @@ public class UserServlet extends HttpServlet {
 
         HttpSession session = request.getSession();
         session.setAttribute("userList", userList);
+        response.sendRedirect("userList.jsp");
     }
 
     public void save(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -91,6 +88,7 @@ public class UserServlet extends HttpServlet {
         String role = request.getParameter("role");
 
         userService.saveOrUpdate(getOrCreateUser(0, name, role));
+        viewAllUsers(request, response);
     }
 
     public void update(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -99,12 +97,14 @@ public class UserServlet extends HttpServlet {
         String role = request.getParameter("role");
 
         userService.saveOrUpdate(getOrCreateUser(userId, name, role));
+        viewAllUsers(request, response);
     }
 
     public void delete(HttpServletRequest request, HttpServletResponse response) throws IOException {
         long userId = Long.parseLong(request.getParameter("userId"));
 
         userService.delete(userId);
+        viewAllUsers(request, response);
     }
 
     public User getOrCreateUser(long userId, String name, String role) {
