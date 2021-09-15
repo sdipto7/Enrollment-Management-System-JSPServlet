@@ -1,6 +1,7 @@
 package net.therap.enrollmentmanagement.service;
 
 import net.therap.enrollmentmanagement.dao.UserDao;
+import net.therap.enrollmentmanagement.domain.Credential;
 import net.therap.enrollmentmanagement.domain.User;
 
 import java.util.List;
@@ -21,8 +22,8 @@ public class UserService {
         return userDao.find(id);
     }
 
-    public User findByCredential(String userName, String password) {
-        return userDao.findByCredential(userName, password);
+    public User findByCredential(Credential credential) {
+        return userDao.findByCredential(credential);
     }
 
     public User findByName(String name) {

@@ -13,7 +13,7 @@ public abstract class Persistent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private long id;
+    protected long id;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "created")

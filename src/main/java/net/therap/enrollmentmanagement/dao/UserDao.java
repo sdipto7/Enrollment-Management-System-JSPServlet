@@ -5,7 +5,6 @@ import net.therap.enrollmentmanagement.domain.User;
 import net.therap.enrollmentmanagement.util.EntityManagerSingleton;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
 import java.util.List;
 import java.util.Objects;
 
@@ -25,12 +24,7 @@ public class UserDao {
         return em.find(User.class, id);
     }
 
-    public User findByCredential(String userName, String password) {
-        Query query = em.createQuery("FROM Credential c WHERE c.userName = :userName AND c.password = :password");
-        query.setParameter("userName", userName);
-        query.setParameter("password", password);
-        Credential credential = (Credential) query.getSingleResult();
-
+    public User findByCredential(Credential credential) {
         return credential.getUser();
     }
 
