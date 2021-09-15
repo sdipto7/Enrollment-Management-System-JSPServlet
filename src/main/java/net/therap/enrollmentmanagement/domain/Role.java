@@ -5,6 +5,7 @@ package net.therap.enrollmentmanagement.domain;
  * @since 9/7/21
  */
 public enum Role {
+
     ADMIN,
     USER
 }

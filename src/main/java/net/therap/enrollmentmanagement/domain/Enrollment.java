@@ -25,6 +25,14 @@ public class Enrollment extends Persistent implements Comparable<Enrollment>, Se
     @JoinColumn(name = "course_id")
     private Course course;
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public User getUser() {
         return user;
     }
@@ -39,14 +47,6 @@ public class Enrollment extends Persistent implements Comparable<Enrollment>, Se
 
     public void setCourse(Course course) {
         this.course = course;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public boolean isNew() {

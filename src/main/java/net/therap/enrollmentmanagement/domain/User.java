@@ -42,14 +42,6 @@ public class User extends Persistent implements Serializable {
         this.id = id;
     }
 
-    public Credential getCredential() {
-        return credential;
-    }
-
-    public void setCredential(Credential credential) {
-        this.credential = credential;
-    }
-
     public String getName() {
         return name;
     }
@@ -64,6 +56,14 @@ public class User extends Persistent implements Serializable {
 
     public void setRole(Role role) {
         this.role = role;
+    }
+
+    public Credential getCredential() {
+        return credential;
+    }
+
+    public void setCredential(Credential credential) {
+        this.credential = credential;
     }
 
     @Override

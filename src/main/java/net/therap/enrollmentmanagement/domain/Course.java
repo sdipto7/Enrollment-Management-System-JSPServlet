@@ -29,6 +29,14 @@ public class Course extends Persistent implements Serializable {
             cascade = CascadeType.REMOVE)
     private List<Enrollment> enrollmentList;
 
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
     public String getCourseCode() {
         return courseCode;
     }
@@ -43,14 +51,6 @@ public class Course extends Persistent implements Serializable {
 
     public void setCourseTitle(String courseTitle) {
         this.courseTitle = courseTitle;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
     }
 
     public boolean isNew() {
