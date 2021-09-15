@@ -23,14 +23,14 @@ public class CourseDao {
         return em.find(Course.class, id);
     }
 
-    public List<Course> findAll() {
-        return em.createQuery("FROM Course").getResultList();
-    }
-
     public Course findByCourseCode(String courseCode) {
         return (Course) em.createQuery("FROM Course c WHERE c.courseCode = :code")
                 .setParameter("code", courseCode)
                 .getSingleResult();
+    }
+
+    public List<Course> findAll() {
+        return em.createQuery("FROM Course").getResultList();
     }
 
     public Course saveOrUpdate(Course course) {

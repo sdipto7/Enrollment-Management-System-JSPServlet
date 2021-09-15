@@ -21,12 +21,12 @@ public class CourseService {
         return courseDao.find(id);
     }
 
-    public List<Course> findAll() {
-        return courseDao.findAll();
-    }
-
     public Course findByCourseCode(String courseCode) {
         return courseDao.findByCourseCode(courseCode);
+    }
+
+    public List<Course> findAll() {
+        return courseDao.findAll();
     }
 
     public void saveOrUpdate(Course course) {

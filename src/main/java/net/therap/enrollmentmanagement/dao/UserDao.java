@@ -34,14 +34,14 @@ public class UserDao {
         return credential.getUser();
     }
 
-    public List<User> findAll() {
-        return em.createQuery("FROM User").getResultList();
-    }
-
     public User findByName(String name) {
         return (User) em.createQuery("FROM User u WHERE u.name = :name")
                 .setParameter("name", name)
                 .getSingleResult();
+    }
+
+    public List<User> findAll() {
+        return em.createQuery("FROM User").getResultList();
     }
 
     public User saveOrUpdate(User user) {

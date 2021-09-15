@@ -25,12 +25,12 @@ public class UserService {
         return userDao.findByCredential(userName, password);
     }
 
-    public List<User> findAll() {
-        return userDao.findAll();
-    }
-
     public User findByName(String name) {
         return userDao.findByName(name);
+    }
+
+    public List<User> findAll() {
+        return userDao.findAll();
     }
 
     public void saveOrUpdate(User user) {
