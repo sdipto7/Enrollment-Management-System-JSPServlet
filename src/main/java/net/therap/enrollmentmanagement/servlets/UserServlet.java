@@ -1,6 +1,5 @@
 package net.therap.enrollmentmanagement.servlets;
 
-import net.therap.enrollmentmanagement.dao.UserDao;
 import net.therap.enrollmentmanagement.domain.Role;
 import net.therap.enrollmentmanagement.domain.User;
 import net.therap.enrollmentmanagement.service.UserService;
@@ -43,7 +42,7 @@ public class UserServlet extends HttpServlet {
                     break;
 
                 case "add":
-                    add(request, response);
+                    save(request, response);
                     response.sendRedirect("userList.jsp");
                     break;
 
@@ -79,12 +78,12 @@ public class UserServlet extends HttpServlet {
         session.setAttribute("userList", userList);
     }
 
-    public void add(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void save(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String name = request.getParameter("name");
         String roleRequested = request.getParameter("role");
         Role role = roleRequested.equalsIgnoreCase("ADMIN") ? Role.ADMIN : Role.USER;
 
-        userService.saveOrUpdate(getUser(0, name, role));
+        userService.saveOrUpdate(getOrCreateUser(0, name, role));
     }
 
     public void update(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -93,17 +92,16 @@ public class UserServlet extends HttpServlet {
         String roleRequested = request.getParameter("role");
         Role role = roleRequested.equalsIgnoreCase("ADMIN") ? Role.ADMIN : Role.USER;
 
-        userService.saveOrUpdate(getUser(userId, name, role));
+        userService.saveOrUpdate(getOrCreateUser(userId, name, role));
     }
 
     public void delete(HttpServletRequest request, HttpServletResponse response) throws IOException {
         long userId = Long.parseLong(request.getParameter("userId"));
 
-        UserDao userDao = new UserDao();
-        userDao.delete(userId);
+        userService.delete(userId);
     }
 
-    public User getUser(long userId, String name, Role role) {
+    public User getOrCreateUser(long userId, String name, Role role) {
         User user;
         if (userId > 0) {
             user = userService.find(userId);

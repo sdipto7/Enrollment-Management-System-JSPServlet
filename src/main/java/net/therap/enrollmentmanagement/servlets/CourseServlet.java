@@ -1,6 +1,5 @@
 package net.therap.enrollmentmanagement.servlets;
 
-import net.therap.enrollmentmanagement.dao.CourseDao;
 import net.therap.enrollmentmanagement.domain.Course;
 import net.therap.enrollmentmanagement.service.CourseService;
 
@@ -42,7 +41,7 @@ public class CourseServlet extends HttpServlet {
                     break;
 
                 case "add":
-                    add(request, response);
+                    save(request, response);
                     response.sendRedirect("courseList.jsp");
                     break;
 
@@ -77,11 +76,11 @@ public class CourseServlet extends HttpServlet {
         session.setAttribute("courseList", courseList);
     }
 
-    public void add(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void save(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String courseCode = request.getParameter("courseCode");
         String courseTitle = request.getParameter("courseTitle");
 
-        courseService.saveOrUpdate(getCourse(0, courseCode, courseTitle));
+        courseService.saveOrUpdate(getOrCreateCourse(0, courseCode, courseTitle));
     }
 
     public void update(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -89,17 +88,16 @@ public class CourseServlet extends HttpServlet {
         String courseCode = request.getParameter("courseCode");
         String courseTitle = request.getParameter("courseTitle");
 
-        courseService.saveOrUpdate(getCourse(courseId, courseCode, courseTitle));
+        courseService.saveOrUpdate(getOrCreateCourse(courseId, courseCode, courseTitle));
     }
 
     public void delete(HttpServletRequest request, HttpServletResponse response) throws IOException {
         long courseId = Long.parseLong(request.getParameter("courseId"));
 
-        CourseDao courseDao = new CourseDao();
-        courseDao.delete(courseId);
+        courseService.delete(courseId);
     }
 
-    public Course getCourse(long courseId, String courseCode, String courseTitle) {
+    public Course getOrCreateCourse(long courseId, String courseCode, String courseTitle) {
         Course course;
         if (courseId > 0) {
             course = courseService.find(courseId);

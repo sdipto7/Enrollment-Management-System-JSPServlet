@@ -1,6 +1,5 @@
 package net.therap.enrollmentmanagement.servlets;
 
-import net.therap.enrollmentmanagement.dao.EnrollmentDao;
 import net.therap.enrollmentmanagement.domain.Course;
 import net.therap.enrollmentmanagement.domain.Enrollment;
 import net.therap.enrollmentmanagement.domain.User;
@@ -52,7 +51,7 @@ public class EnrollmentServlet extends HttpServlet {
                     break;
 
                 case "add":
-                    add(request, response);
+                    save(request, response);
                     response.sendRedirect("enrollmentList.jsp");
                     break;
 
@@ -88,41 +87,37 @@ public class EnrollmentServlet extends HttpServlet {
         session.setAttribute("enrollmentList", enrollmentList);
     }
 
-    public void add(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String name = request.getParameter("name");
+    public void save(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String userName = request.getParameter("name");
         String courseCode = request.getParameter("courseCode");
 
-        User user = userService.findByName(name);
-        Course course = courseService.findByCourseCode(courseCode);
-
-        enrollmentService.saveOrUpdate(getEnrollment(0, user, course));
+        enrollmentService.saveOrUpdate(getOrCreateEnrollment(0, userName, courseCode));
     }
 
     public void update(HttpServletRequest request, HttpServletResponse response) throws IOException {
         long enrollmentId = Long.parseLong(request.getParameter("enrollmentId"));
-        String name = request.getParameter("name");
+        String userName = request.getParameter("name");
         String courseCode = request.getParameter("courseCode");
 
-        User user = userService.findByName(name);
-        Course course = courseService.findByCourseCode(courseCode);
-
-        enrollmentService.saveOrUpdate(getEnrollment(enrollmentId, user, course));
+        enrollmentService.saveOrUpdate(getOrCreateEnrollment(enrollmentId, userName, courseCode));
     }
 
     public void delete(HttpServletRequest request, HttpServletResponse response) throws IOException {
         long enrollmentId = Long.parseLong(request.getParameter("enrollmentId"));
 
-        EnrollmentDao enrollmentDao = new EnrollmentDao();
-        enrollmentDao.delete(enrollmentId);
+        enrollmentService.delete(enrollmentId);
     }
 
-    public Enrollment getEnrollment(long enrollmentId, User user, Course course) {
+    public Enrollment getOrCreateEnrollment(long enrollmentId, String userName, String courseCode) {
         Enrollment enrollment;
         if (enrollmentId > 0) {
             enrollment = enrollmentService.find(enrollmentId);
         } else {
             enrollment = new Enrollment();
         }
+        User user = userService.findByName(userName);
+        Course course = courseService.findByCourseCode(courseCode);
+
         enrollment.setUser(user);
         enrollment.setCourse(course);
 
