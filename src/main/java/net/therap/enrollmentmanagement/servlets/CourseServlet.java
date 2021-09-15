@@ -23,6 +23,24 @@ public class CourseServlet extends HttpServlet {
         courseService = new CourseService();
     }
 
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        String action = request.getParameter("action");
+        switch (action) {
+            case "add":
+                save(request, response);
+                response.sendRedirect("courseList.jsp");
+                break;
+
+            case "update":
+                update(request, response);
+                response.sendRedirect("courseList.jsp");
+                break;
+
+            default:
+                break;
+        }
+    }
+
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
         HttpSession session = request.getSession();
 
@@ -40,11 +58,6 @@ public class CourseServlet extends HttpServlet {
                     response.sendRedirect("course.jsp");
                     break;
 
-                case "add":
-                    save(request, response);
-                    response.sendRedirect("courseList.jsp");
-                    break;
-
                 case "delete":
                     delete(request, response);
                     response.sendRedirect("courseList.jsp");
@@ -54,11 +67,6 @@ public class CourseServlet extends HttpServlet {
                     session.setAttribute("action", "update");
                     session.setAttribute("courseId", Long.parseLong(request.getParameter("courseId")));
                     response.sendRedirect("course.jsp");
-                    break;
-
-                case "update":
-                    update(request, response);
-                    response.sendRedirect("courseList.jsp");
                     break;
 
                 default:

@@ -59,11 +59,6 @@ public class UserServlet extends HttpServlet {
                     response.sendRedirect("user.jsp");
                     break;
 
-//                case "add":
-//                    save(request, response);
-//                    response.sendRedirect("userList.jsp");
-//                    break;
-
                 case "delete":
                     delete(request, response);
                     response.sendRedirect("userList.jsp");
@@ -76,13 +71,8 @@ public class UserServlet extends HttpServlet {
                     response.sendRedirect("user.jsp");
                     break;
 
-//                case "update":
-//                    update(request, response);
-//                    response.sendRedirect("userList.jsp");
-//                    break;
-//
-//                default:
-//                    break;
+                default:
+                    break;
             }
         } else {
             response.sendRedirect("login.jsp");

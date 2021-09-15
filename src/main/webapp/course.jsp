@@ -5,7 +5,7 @@
     <title>Edit Course</title>
 </head>
 <body>
-<form action="/course">
+<form action="/course" method="post">
     <input type="hidden" value="${action}" name="action">
     <input type="hidden" value="${courseId}" name="courseId">
     <label> Course Code: <input type="text" name="courseCode"/></label><br><br>

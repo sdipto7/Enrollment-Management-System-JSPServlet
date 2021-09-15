@@ -5,7 +5,7 @@
     <title>Edit Enrollment</title>
 </head>
 <body>
-<form action="/enrollment">
+<form action="/enrollment" method="post">
     <input type="hidden" name="enrollmentId" value="${enrollmentId}"/>
     <input type="hidden" value="${action}" name="action">
     <label> User's Name: <input type="text" name="name"></label><br><br>
