@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 import java.util.Objects;
 
 /**
@@ -95,9 +94,7 @@ public class EnrollmentServlet extends HttpServlet {
     }
 
     public void showAll(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        List<Enrollment> enrollmentList = enrollmentService.findAll();
-
-        request.setAttribute("enrollmentList", enrollmentList);
+        request.setAttribute("enrollmentList", enrollmentService.findAll());
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/view/enrollmentList.jsp");
         requestDispatcher.forward(request, response);
     }

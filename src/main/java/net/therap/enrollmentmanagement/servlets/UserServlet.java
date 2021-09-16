@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.List;
 import java.util.Objects;
 
 /**
@@ -86,9 +85,7 @@ public class UserServlet extends HttpServlet {
     }
 
     public void showAll(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        List<User> userList = userService.findAll();
-
-        request.setAttribute("userList", userList);
+        request.setAttribute("userList", userService.findAll());
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/view/userList.jsp");
         requestDispatcher.forward(request, response);
     }
