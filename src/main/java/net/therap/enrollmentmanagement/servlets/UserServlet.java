@@ -116,7 +116,7 @@ public class UserServlet extends HttpServlet {
             user = new User();
         }
         user.setName(name);
-        user.setRole(role.equalsIgnoreCase("ADMIN") ? Role.ADMIN : Role.USER);
+        user.setRole(Role.getRole(role));
 
         return user;
     }
