@@ -1,9 +1,11 @@
 package net.therap.enrollmentmanagement.servlets;
 
+import net.therap.enrollmentmanagement.domain.User;
+import net.therap.enrollmentmanagement.util.SessionUtil;
+
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.Objects;
 
@@ -14,9 +16,9 @@ import java.util.Objects;
 public class HomeServlet extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        HttpSession session = request.getSession();
+        User loggedInUser = SessionUtil.getLoggedInUser(request);
 
-        if (Objects.isNull(session.getAttribute("currentUser"))) {
+        if (Objects.isNull(loggedInUser)) {
             response.sendRedirect("login.jsp");
         }
     }

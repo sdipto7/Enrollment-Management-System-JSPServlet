@@ -3,6 +3,7 @@ package net.therap.enrollmentmanagement.servlets;
 import net.therap.enrollmentmanagement.domain.Role;
 import net.therap.enrollmentmanagement.domain.User;
 import net.therap.enrollmentmanagement.service.UserService;
+import net.therap.enrollmentmanagement.util.SessionUtil;
 
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -41,11 +42,13 @@ public class UserServlet extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        HttpSession session = request.getSession();
+        User loggedInUser = SessionUtil.getLoggedInUser(request);
 
-        if (Objects.nonNull(session.getAttribute("currentUser"))) {
+        if (Objects.isNull(loggedInUser)) {
+            response.sendRedirect("login.jsp");
+        } else {
+            HttpSession session = request.getSession();
             String action = request.getParameter("action");
-
             switch (action) {
                 case "userList":
                     viewAllUsers(request, response);
@@ -70,8 +73,6 @@ public class UserServlet extends HttpServlet {
                 default:
                     break;
             }
-        } else {
-            response.sendRedirect("login.jsp");
         }
     }
 
