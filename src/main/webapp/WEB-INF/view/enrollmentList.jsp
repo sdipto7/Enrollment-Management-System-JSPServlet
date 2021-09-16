@@ -18,7 +18,9 @@
 <body>
 <table>
     <tr>
-        <th>User Id</th>
+        <c:if test="${currentUser.role == 'ADMIN'}">
+            <th>User Id</th>
+        </c:if>
         <th>User name</th>
         <th>Course Code</th>
         <th>Course Title</th>
@@ -34,7 +36,7 @@
         </c:url>
         <tr>
             <c:if test="${currentUser.role == 'ADMIN'}">
-            <td><c:out value="${enrollment.user.id}"/></td>
+                <td><c:out value="${enrollment.user.id}"/></td>
             </c:if>
             <td><c:out value="${enrollment.user.name}"/></td>
             <td><c:out value="${enrollment.course.courseCode}"/></td>

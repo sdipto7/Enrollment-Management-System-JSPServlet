@@ -13,9 +13,11 @@
 <body>
 <form action="/user" method="post">
     <input type="hidden" name="userId" value="${userId}"/>
-    <input type="hidden" value="${action}" name="action">
+    <input type="hidden" value="${action}" name="action"/>
     <label> Name: <input type="text" name="name"></label><br><br>
-    <label> Role: <input type="text" name="role"></label><br><br>
+    <label> Role: </label><br>
+    <label><input type="radio" name="role" value="admin"> ADMIN</label><br>
+    <label><input type="radio" name="role" value="user"> USER</label><br><br>
     <input type="submit" name="action" value="${action}"/><br><br>
 </form>
 
