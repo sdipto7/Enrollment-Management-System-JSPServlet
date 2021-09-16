@@ -1,12 +1,19 @@
+<%--
 /**
 * @author rumi.dipto
 * @since 9/10/21
 */
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
     <title>Users</title>
+    <script type="text/javascript">
+        function deleteAlert() {
+            if (!(confirm('Are you sure to delete the selected user ?'))) return false;
+        }
+    </script>
 </head>
 <body>
 <table>
@@ -35,7 +42,7 @@
                     <a href="${updateLink}"><c:out value="Edit"/></a>
                     |
                     <a href="${deleteLink}"
-                       onclick="if(!(confirm('Are you sure to delete the selected user ?'))) return false">
+                       onclick="deleteAlert()">
                         <c:out value="Delete"/></a>
                 </td>
             </c:if>

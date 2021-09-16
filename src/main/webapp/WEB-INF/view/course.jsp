@@ -1,7 +1,9 @@
+<%--
 /**
 * @author rumi.dipto
 * @since 9/10/21
 */
+--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
@@ -14,14 +16,7 @@
     <input type="hidden" value="${courseId}" name="courseId">
     <label> Course Code: <input type="text" name="courseCode"/></label><br><br>
     <label> Course Title:<input type="text" name="courseTitle"/></label><br><br>
-    <c:choose>
-        <c:when test="${action == 'add'}">
-            <input type="submit" value="Add"/><br><br>
-        </c:when>
-        <c:otherwise>
-            <input type="submit" value="Update"/><br><br>
-        </c:otherwise>
-    </c:choose>
+    <input type="submit" name="action" value="${action}"/><br><br>
 </form>
 
 <br>
