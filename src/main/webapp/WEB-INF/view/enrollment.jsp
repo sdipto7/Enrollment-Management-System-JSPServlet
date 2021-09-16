@@ -13,8 +13,8 @@
 <body>
 <c:if test="${action == 'update'}">
     <c:out value="User Name: ${enrollment.user.name}"/><br>
-    <c:out value="Course Code: ${enrollment.course.courseCode}"/><br><br>
-    <label>Update Information:</label><br>
+    <c:out value="Course Code: ${enrollment.course.courseCode}"/><br><br><br>
+    <label>Update Information:</label><br><br>
 </c:if>
 <form action="/enrollment" method="post">
     <input type="hidden" name="enrollmentId" value="${enrollmentId}"/>

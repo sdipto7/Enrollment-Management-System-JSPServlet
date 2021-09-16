@@ -12,15 +12,15 @@
 </head>
 <body>
 <c:if test="${action == 'update'}">
-    <c:out value="Course Code: ${course.courseCode}"/><br>
-    <c:out value="Course Title: ${course.courseTitle}"/><br><br>
+    <c:out value="Code: ${course.courseCode}"/><br>
+    <c:out value="Title: ${course.courseTitle}"/><br><br><br>
     <label>Update Information:</label><br>
 </c:if>
 <form action="/course" method="post">
     <input type="hidden" value="${action}" name="action">
     <input type="hidden" value="${courseId}" name="courseId">
-    <label> Course Code: <input type="text" name="courseCode"/></label><br><br>
-    <label> Course Title:<input type="text" name="courseTitle"/></label><br><br>
+    <label> Code: <input type="text" name="courseCode"/></label><br><br>
+    <label> Title:<input type="text" name="courseTitle"/></label><br><br>
     <input type="submit" name="action" value="${action}"/><br><br>
 </form>
 
