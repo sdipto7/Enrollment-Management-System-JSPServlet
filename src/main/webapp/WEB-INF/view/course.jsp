@@ -11,6 +11,11 @@
     <title>Edit Course</title>
 </head>
 <body>
+<c:if test="${action == 'update'}">
+    <c:out value="Course Code: ${course.courseCode}"/><br>
+    <c:out value="Course Title: ${course.courseTitle}"/><br><br>
+    <label>Update Information:</label><br>
+</c:if>
 <form action="/course" method="post">
     <input type="hidden" value="${action}" name="action">
     <input type="hidden" value="${courseId}" name="courseId">

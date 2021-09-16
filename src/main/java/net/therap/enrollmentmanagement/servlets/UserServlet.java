@@ -68,6 +68,7 @@ public class UserServlet extends HttpServlet {
                         request.setAttribute("action", "add");
                     } else {
                         request.setAttribute("action", "update");
+                        request.setAttribute("user", userService.find(userId));
                         request.setAttribute("userId", userId);
                     }
                     RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/view/user.jsp");

@@ -68,6 +68,7 @@ public class CourseServlet extends HttpServlet {
                         request.setAttribute("action", "add");
                     } else {
                         request.setAttribute("action", "update");
+                        request.setAttribute("course", courseService.find(courseId));
                         request.setAttribute("courseId", courseId);
                     }
                     RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/view/course.jsp");

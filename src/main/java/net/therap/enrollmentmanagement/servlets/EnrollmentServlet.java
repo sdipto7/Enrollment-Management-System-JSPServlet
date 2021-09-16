@@ -77,6 +77,7 @@ public class EnrollmentServlet extends HttpServlet {
                         request.setAttribute("action", "add");
                     } else {
                         request.setAttribute("action", "update");
+                        request.setAttribute("enrollment", enrollmentService.find(enrollmentId));
                         request.setAttribute("enrollmentId", enrollmentId);
                     }
                     RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/view/enrollment.jsp");

@@ -11,6 +11,11 @@
     <title>Edit User</title>
 </head>
 <body>
+<c:if test="${action == 'update'}">
+    <c:out value="Name: ${user.name}"/><br>
+    <c:out value="Role: ${user.role}"/><br><br>
+    <label>Update Information:</label><br>
+</c:if>
 <form action="/user" method="post">
     <input type="hidden" name="userId" value="${userId}"/>
     <input type="hidden" value="${action}" name="action"/>
