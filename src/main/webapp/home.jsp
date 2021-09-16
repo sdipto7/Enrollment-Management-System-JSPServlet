@@ -15,14 +15,14 @@
 <br>
 
 <c:url var="userViewLink" value="/user">
-    <c:param name="action" value="userList"/>
+    <c:param name="action" value="viewList"/>
 </c:url>
 <a href="${userViewLink}"><c:out value="View Users"/></a>
 <br>
 <br>
 
 <c:url var="enrollmentViewLink" value="/enrollment">
-    <c:param name="action" value="enrollmentList"/>
+    <c:param name="action" value="viewList"/>
 </c:url>
 <a href="${enrollmentViewLink}"><c:out value="View Enrollments"/></a>
 <br>

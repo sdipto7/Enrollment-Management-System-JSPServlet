@@ -14,7 +14,7 @@
     </tr>
     <c:forEach var="enrollment" items="${enrollmentList}">
         <c:url var="updateLink" value="/enrollment">
-            <c:param name="action" value="updateClick"/>
+            <c:param name="action" value="edit"/>
             <c:param name="enrollmentId" value="${enrollment.id}"/>
         </c:url>
         <c:url var="deleteLink" value="/enrollment">
@@ -43,7 +43,8 @@
 <br>
 <c:if test="${currentUser.role == 'ADMIN'}">
     <c:url var="addLink" value="/enrollment">
-        <c:param name="action" value="addClick"/>
+        <c:param name="action" value="edit"/>
+        <c:param name="enrollmentId" value="0"/>
     </c:url>
     <a href="${addLink}"><c:out value="Add Enrollment"/></a>
     <br><br>

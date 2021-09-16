@@ -1,5 +1,6 @@
 package net.therap.enrollmentmanagement.servlets;
 
+import net.therap.enrollmentmanagement.domain.Action;
 import net.therap.enrollmentmanagement.domain.Course;
 import net.therap.enrollmentmanagement.domain.Enrollment;
 import net.therap.enrollmentmanagement.domain.User;
@@ -35,13 +36,13 @@ public class EnrollmentServlet extends HttpServlet {
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String action = request.getParameter("action");
+        Action action = Action.getAction(request.getParameter("action"));
         switch (action) {
-            case "add":
+            case ADD:
                 save(request, response);
                 break;
 
-            case "update":
+            case UPDATE:
                 update(request, response);
                 break;
 
@@ -57,26 +58,25 @@ public class EnrollmentServlet extends HttpServlet {
             response.sendRedirect("login.jsp");
         } else {
             HttpSession session = request.getSession();
-            String action = request.getParameter("action");
+            Action action = Action.getAction(request.getParameter("action"));
             switch (action) {
-                case "enrollmentList":
+                case VIEWLIST:
                     viewAllEnrollment(request, response);
                     break;
 
-                case "addClick":
-                    session.setAttribute("action", "add");
-                    response.sendRedirect("enrollment.jsp");
-                    break;
-
-                case "delete":
-                    delete(request, response);
-                    break;
-
-                case "updateClick":
+                case EDIT:
                     long enrollmentId = Long.parseLong(request.getParameter("enrollmentId"));
-                    session.setAttribute("action", "update");
-                    session.setAttribute("enrollmentId", enrollmentId);
+                    if (enrollmentId == 0) {
+                        session.setAttribute("action", "add");
+                    } else {
+                        session.setAttribute("action", "update");
+                        session.setAttribute("enrollmentId", enrollmentId);
+                    }
                     response.sendRedirect("enrollment.jsp");
+                    break;
+
+                case DELETE:
+                    delete(request, response);
                     break;
 
                 default:

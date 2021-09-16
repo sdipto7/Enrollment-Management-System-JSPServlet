@@ -1,5 +1,6 @@
 package net.therap.enrollmentmanagement.servlets;
 
+import net.therap.enrollmentmanagement.domain.Action;
 import net.therap.enrollmentmanagement.domain.Role;
 import net.therap.enrollmentmanagement.domain.User;
 import net.therap.enrollmentmanagement.service.UserService;
@@ -26,12 +27,12 @@ public class UserServlet extends HttpServlet {
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String action = request.getParameter("action");
+        Action action = Action.getAction(request.getParameter("action"));
         switch (action) {
-            case "add":
+            case ADD:
                 save(request, response);
                 break;
-            case "update":
+            case UPDATE:
                 update(request, response);
                 break;
 
@@ -48,26 +49,25 @@ public class UserServlet extends HttpServlet {
             response.sendRedirect("login.jsp");
         } else {
             HttpSession session = request.getSession();
-            String action = request.getParameter("action");
+            Action action = Action.getAction(request.getParameter("action"));
             switch (action) {
-                case "userList":
+                case VIEWLIST:
                     viewAllUsers(request, response);
                     break;
 
-                case "addClick":
-                    session.setAttribute("action", "add");
-                    response.sendRedirect("user.jsp");
-                    break;
-
-                case "delete":
-                    delete(request, response);
-                    break;
-
-                case "updateClick":
+                case EDIT:
                     long userId = Long.parseLong(request.getParameter("userId"));
-                    session.setAttribute("action", "update");
-                    session.setAttribute("userId", userId);
+                    if (userId == 0) {
+                        session.setAttribute("action", "add");
+                    } else {
+                        session.setAttribute("action", "update");
+                        session.setAttribute("userId", userId);
+                    }
                     response.sendRedirect("user.jsp");
+                    break;
+
+                case DELETE:
+                    delete(request, response);
                     break;
 
                 default:

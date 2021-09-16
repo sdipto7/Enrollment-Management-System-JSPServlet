@@ -50,7 +50,6 @@ public class CourseServlet extends HttpServlet {
         } else {
             HttpSession session = request.getSession();
             Action action = Action.getAction(request.getParameter("action"));
-
             switch (action) {
                 case VIEWLIST:
                     viewAllCourse(request, response);
