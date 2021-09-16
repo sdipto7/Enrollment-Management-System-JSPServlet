@@ -9,22 +9,13 @@ public enum Role {
     ADMIN("admin"),
     USER("user");
 
-    private String text;
+    private String naturalName;
 
-    Role(String text) {
-        this.text = text;
+    Role(String naturalName) {
+        this.naturalName = naturalName;
     }
 
-    public String getText() {
-        return this.text;
-    }
-
-    public static Role getRole(String text) {
-        for (Role role : Role.values()) {
-            if (role.getText().equalsIgnoreCase(text)) {
-                return role;
-            }
-        }
-        return null;
+    public String getNaturalName() {
+        return this.naturalName;
     }
 }

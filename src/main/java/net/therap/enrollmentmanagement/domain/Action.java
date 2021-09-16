@@ -12,19 +12,19 @@ public enum Action {
     VIEW("view"),
     EDIT("edit");
 
-    private String text;
+    private String naturalName;
 
-    Action(String text) {
-        this.text = text;
+    Action(String naturalName) {
+        this.naturalName = naturalName;
     }
 
-    public String getText() {
-        return this.text;
+    public String getNaturalName() {
+        return this.naturalName;
     }
 
     public static Action getAction(String text) {
         for (Action action : Action.values()) {
-            if (action.getText().equalsIgnoreCase(text)) {
+            if (action.getNaturalName().equalsIgnoreCase(text)) {
                 return action;
             }
         }

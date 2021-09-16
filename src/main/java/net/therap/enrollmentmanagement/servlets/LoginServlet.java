@@ -7,6 +7,8 @@ import net.therap.enrollmentmanagement.util.EntityManagerSingleton;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -29,11 +31,12 @@ public class LoginServlet extends HttpServlet {
         userService = new UserService();
     }
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        response.sendRedirect("login.jsp");
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/view/login.jsp");
+        requestDispatcher.forward(request, response);
     }
 
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String userName = request.getParameter("userName");
         String password = request.getParameter("password");
 
@@ -42,9 +45,11 @@ public class LoginServlet extends HttpServlet {
         if (Objects.nonNull(user)) {
             HttpSession session = request.getSession();
             session.setAttribute("currentUser", user);
-            response.sendRedirect("home.jsp");
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/view/home.jsp");
+            requestDispatcher.forward(request, response);
         } else {
-            response.sendRedirect("login.jsp");
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/view/login.jsp");
+            requestDispatcher.forward(request, response);
         }
     }
 
