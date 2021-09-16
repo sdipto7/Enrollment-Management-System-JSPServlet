@@ -51,8 +51,8 @@ public class CourseServlet extends HttpServlet {
             HttpSession session = request.getSession();
             Action action = Action.getAction(request.getParameter("action"));
             switch (action) {
-                case VIEWLIST:
-                    viewAllCourse(request, response);
+                case VIEW:
+                    showAll(request, response);
                     break;
 
                 case EDIT:
@@ -76,7 +76,7 @@ public class CourseServlet extends HttpServlet {
         }
     }
 
-    public void viewAllCourse(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void showAll(HttpServletRequest request, HttpServletResponse response) throws IOException {
         List<Course> courseList = courseService.findAll();
 
         HttpSession session = request.getSession();
@@ -89,7 +89,7 @@ public class CourseServlet extends HttpServlet {
         String courseTitle = request.getParameter("courseTitle");
 
         courseService.saveOrUpdate(getOrCreateCourse(0, courseCode, courseTitle));
-        viewAllCourse(request, response);
+        showAll(request, response);
     }
 
     public void update(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -98,14 +98,14 @@ public class CourseServlet extends HttpServlet {
         String courseTitle = request.getParameter("courseTitle");
 
         courseService.saveOrUpdate(getOrCreateCourse(courseId, courseCode, courseTitle));
-        viewAllCourse(request, response);
+        showAll(request, response);
     }
 
     public void delete(HttpServletRequest request, HttpServletResponse response) throws IOException {
         long courseId = Long.parseLong(request.getParameter("courseId"));
 
         courseService.delete(courseId);
-        viewAllCourse(request, response);
+        showAll(request, response);
     }
 
     public Course getOrCreateCourse(long courseId, String courseCode, String courseTitle) {

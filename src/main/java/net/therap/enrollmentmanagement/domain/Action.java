@@ -9,7 +9,7 @@ public enum Action {
     ADD("add"),
     UPDATE("update"),
     DELETE("delete"),
-    VIEWLIST("viewList"),
+    VIEW("view"),
     EDIT("edit");
 
     private String text;

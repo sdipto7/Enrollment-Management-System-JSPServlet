@@ -51,8 +51,8 @@ public class UserServlet extends HttpServlet {
             HttpSession session = request.getSession();
             Action action = Action.getAction(request.getParameter("action"));
             switch (action) {
-                case VIEWLIST:
-                    viewAllUsers(request, response);
+                case VIEW:
+                    showAll(request, response);
                     break;
 
                 case EDIT:
@@ -76,7 +76,7 @@ public class UserServlet extends HttpServlet {
         }
     }
 
-    public void viewAllUsers(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void showAll(HttpServletRequest request, HttpServletResponse response) throws IOException {
         List<User> userList = userService.findAll();
 
         HttpSession session = request.getSession();
@@ -89,7 +89,7 @@ public class UserServlet extends HttpServlet {
         String role = request.getParameter("role");
 
         userService.saveOrUpdate(getOrCreateUser(0, name, role));
-        viewAllUsers(request, response);
+        showAll(request, response);
     }
 
     public void update(HttpServletRequest request, HttpServletResponse response) throws IOException {
@@ -98,14 +98,14 @@ public class UserServlet extends HttpServlet {
         String role = request.getParameter("role");
 
         userService.saveOrUpdate(getOrCreateUser(userId, name, role));
-        viewAllUsers(request, response);
+        showAll(request, response);
     }
 
     public void delete(HttpServletRequest request, HttpServletResponse response) throws IOException {
         long userId = Long.parseLong(request.getParameter("userId"));
 
         userService.delete(userId);
-        viewAllUsers(request, response);
+        showAll(request, response);
     }
 
     public User getOrCreateUser(long userId, String name, String role) {

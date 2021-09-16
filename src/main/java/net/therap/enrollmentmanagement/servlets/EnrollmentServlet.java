@@ -60,8 +60,8 @@ public class EnrollmentServlet extends HttpServlet {
             HttpSession session = request.getSession();
             Action action = Action.getAction(request.getParameter("action"));
             switch (action) {
-                case VIEWLIST:
-                    viewAllEnrollment(request, response);
+                case VIEW:
+                    showAll(request, response);
                     break;
 
                 case EDIT:
@@ -85,7 +85,7 @@ public class EnrollmentServlet extends HttpServlet {
         }
     }
 
-    public void viewAllEnrollment(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void showAll(HttpServletRequest request, HttpServletResponse response) throws IOException {
         List<Enrollment> enrollmentList = enrollmentService.findAll();
 
         HttpSession session = request.getSession();
