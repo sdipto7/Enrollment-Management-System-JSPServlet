@@ -3,6 +3,8 @@ package net.therap.enrollmentmanagement.servlets;
 import net.therap.enrollmentmanagement.domain.User;
 import net.therap.enrollmentmanagement.util.SessionUtil;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -15,11 +17,12 @@ import java.util.Objects;
  */
 public class HomeServlet extends HttpServlet {
 
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         User loggedInUser = SessionUtil.getLoggedInUser(request);
 
         if (Objects.isNull(loggedInUser)) {
-            response.sendRedirect("login.jsp");
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/view/login.jsp");
+            requestDispatcher.forward(request, response);
         }
     }
 }

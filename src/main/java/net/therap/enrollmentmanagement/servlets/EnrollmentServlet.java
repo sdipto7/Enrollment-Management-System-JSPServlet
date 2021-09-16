@@ -9,10 +9,11 @@ import net.therap.enrollmentmanagement.service.EnrollmentService;
 import net.therap.enrollmentmanagement.service.UserService;
 import net.therap.enrollmentmanagement.util.SessionUtil;
 
+import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
@@ -35,29 +36,36 @@ public class EnrollmentServlet extends HttpServlet {
         courseService = new CourseService();
     }
 
-    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        Action action = Action.getAction(request.getParameter("action"));
-        switch (action) {
-            case ADD:
-                save(request, response);
-                break;
-
-            case UPDATE:
-                update(request, response);
-                break;
-
-            default:
-                break;
-        }
-    }
-
-    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         User loggedInUser = SessionUtil.getLoggedInUser(request);
 
         if (Objects.isNull(loggedInUser)) {
-            response.sendRedirect("login.jsp");
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/view/login.jsp");
+            requestDispatcher.forward(request, response);
         } else {
-            HttpSession session = request.getSession();
+            Action action = Action.getAction(request.getParameter("action"));
+            switch (action) {
+                case ADD:
+                    save(request, response);
+                    break;
+
+                case UPDATE:
+                    update(request, response);
+                    break;
+
+                default:
+                    break;
+            }
+        }
+    }
+
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        User loggedInUser = SessionUtil.getLoggedInUser(request);
+
+        if (Objects.isNull(loggedInUser)) {
+            RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/view/login.jsp");
+            requestDispatcher.forward(request, response);
+        } else {
             Action action = Action.getAction(request.getParameter("action"));
             switch (action) {
                 case VIEW:
@@ -67,12 +75,13 @@ public class EnrollmentServlet extends HttpServlet {
                 case EDIT:
                     long enrollmentId = Long.parseLong(request.getParameter("enrollmentId"));
                     if (enrollmentId == 0) {
-                        session.setAttribute("action", "add");
+                        request.setAttribute("action", "add");
                     } else {
-                        session.setAttribute("action", "update");
-                        session.setAttribute("enrollmentId", enrollmentId);
+                        request.setAttribute("action", "update");
+                        request.setAttribute("enrollmentId", enrollmentId);
                     }
-                    response.sendRedirect("enrollment.jsp");
+                    RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/view/enrollment.jsp");
+                    requestDispatcher.forward(request, response);
                     break;
 
                 case DELETE:
@@ -85,36 +94,36 @@ public class EnrollmentServlet extends HttpServlet {
         }
     }
 
-    public void showAll(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void showAll(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         List<Enrollment> enrollmentList = enrollmentService.findAll();
 
-        HttpSession session = request.getSession();
-        session.setAttribute("enrollmentList", enrollmentList);
-        response.sendRedirect("enrollmentList.jsp");
+        request.setAttribute("enrollmentList", enrollmentList);
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/view/enrollmentList.jsp");
+        requestDispatcher.forward(request, response);
     }
 
-    public void save(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void save(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String userName = request.getParameter("name");
         String courseCode = request.getParameter("courseCode");
 
         enrollmentService.saveOrUpdate(getOrCreateEnrollment(0, userName, courseCode));
-        response.sendRedirect("enrollmentList.jsp");
+        showAll(request, response);
     }
 
-    public void update(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void update(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         long enrollmentId = Long.parseLong(request.getParameter("enrollmentId"));
         String userName = request.getParameter("name");
         String courseCode = request.getParameter("courseCode");
 
         enrollmentService.saveOrUpdate(getOrCreateEnrollment(enrollmentId, userName, courseCode));
-        response.sendRedirect("enrollmentList.jsp");
+        showAll(request, response);
     }
 
-    public void delete(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void delete(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         long enrollmentId = Long.parseLong(request.getParameter("enrollmentId"));
 
         enrollmentService.delete(enrollmentId);
-        response.sendRedirect("enrollmentList.jsp");
+        showAll(request, response);
     }
 
     public Enrollment getOrCreateEnrollment(long enrollmentId, String userName, String courseCode) {
