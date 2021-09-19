@@ -10,10 +10,10 @@
     <title>JSP - Hello World</title>
 </head>
 <body>
-<form action="loginForm" method="post">
-    <label> Username: <input type="text" name="userName"></label><br><br>
-    <label> Password: <input type="password" name="password"></label><br><br>
-    <input type="submit" value="login">
-</form>
+    <form action="loginForm" method="post">
+        <label> Username: <input type="text" name="userName"></label><br><br>
+        <label> Password: <input type="password" name="password"></label><br><br>
+        <input type="submit" value="login">
+    </form>
 </body>
 </html>
