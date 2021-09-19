@@ -6,7 +6,7 @@ package net.therap.enrollmentmanagement.domain;
  */
 public enum Action {
 
-    ADD("add"),
+    SAVE("save"),
     UPDATE("update"),
     DELETE("delete"),
     VIEW("view"),

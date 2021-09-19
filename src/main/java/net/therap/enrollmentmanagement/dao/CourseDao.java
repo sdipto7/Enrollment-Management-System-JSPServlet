@@ -30,7 +30,8 @@ public class CourseDao {
     }
 
     public List<Course> findAll() {
-        return em.createQuery("FROM Course").getResultList();
+        return em.createQuery("FROM Course")
+                .getResultList();
     }
 
     public Course saveOrUpdate(Course course) {

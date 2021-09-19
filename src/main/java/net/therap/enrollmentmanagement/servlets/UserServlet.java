@@ -35,7 +35,7 @@ public class UserServlet extends HttpServlet {
         } else {
             Action action = Action.getAction(request.getParameter("action"));
             switch (action) {
-                case ADD:
+                case SAVE:
                     save(request, response);
                     break;
                 case UPDATE:
