@@ -40,10 +40,6 @@ public class Enrollment extends Persistent implements Comparable<Enrollment>, Se
         this.course = course;
     }
 
-    public boolean isNew() {
-        return getId() == 0;
-    }
-
     @Override
     public int compareTo(Enrollment that) {
         return this.getUser().getName().compareTo(that.getUser().getName());

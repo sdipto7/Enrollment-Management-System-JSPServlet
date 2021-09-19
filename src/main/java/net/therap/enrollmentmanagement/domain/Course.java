@@ -40,8 +40,4 @@ public class Course extends Persistent implements Serializable {
     public void setCourseTitle(String courseTitle) {
         this.courseTitle = courseTitle;
     }
-
-    public boolean isNew() {
-        return getId() == 0;
-    }
 }

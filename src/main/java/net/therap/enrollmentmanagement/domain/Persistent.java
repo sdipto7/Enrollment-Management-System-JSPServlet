@@ -56,4 +56,8 @@ public abstract class Persistent {
     public void setUpdated(Date updated) {
         this.updated = updated;
     }
+
+    public boolean isNew() {
+        return getId() == 0;
+    }
 }

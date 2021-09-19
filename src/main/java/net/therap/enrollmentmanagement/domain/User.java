@@ -68,8 +68,4 @@ public class User extends Persistent implements Serializable {
     public int hashCode() {
         return Objects.hashCode(getName());
     }
-
-    public boolean isNew() {
-        return getId() == 0;
-    }
 }
