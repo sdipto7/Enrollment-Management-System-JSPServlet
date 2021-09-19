@@ -25,7 +25,10 @@ public class UserDao {
     }
 
     public User findByCredential(Credential credential) {
-        return credential.getUser();
+        return (User) em.createQuery("FROM User u WHERE u.credential.userName = :userName AND u.credential.password = :password")
+                .setParameter("userName", credential.getUserName())
+                .setParameter("password", credential.getPassword())
+                .getSingleResult();
     }
 
     public User findByName(String name) {

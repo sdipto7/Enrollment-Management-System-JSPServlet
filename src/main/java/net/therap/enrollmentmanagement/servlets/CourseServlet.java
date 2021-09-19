@@ -85,7 +85,7 @@ public class CourseServlet extends HttpServlet {
     public void edit(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         long courseId = Long.parseLong(request.getParameter("courseId"));
         if (courseId == 0) {
-            request.setAttribute("action", "add");
+            request.setAttribute("action", "save");
         } else {
             request.setAttribute("action", "update");
             request.setAttribute("course", courseService.find(courseId));

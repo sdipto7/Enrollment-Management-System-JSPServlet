@@ -6,7 +6,6 @@ import net.therap.enrollmentmanagement.service.UserService;
 import net.therap.enrollmentmanagement.util.EntityManagerSingleton;
 
 import javax.persistence.EntityManager;
-import javax.persistence.Query;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -37,10 +36,14 @@ public class LoginServlet extends HttpServlet {
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        response.setContentType("text/html");
         String userName = request.getParameter("userName");
         String password = request.getParameter("password");
 
-        User user = userService.findByCredential(getCredential(userName, password));
+        Credential credential = new Credential(userName, password);
+        User user = userService.findByCredential(credential);
+
+        System.out.println("HELLO");
 
         if (Objects.nonNull(user)) {
             HttpSession session = request.getSession();
@@ -51,13 +54,5 @@ public class LoginServlet extends HttpServlet {
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/view/login.jsp");
             requestDispatcher.forward(request, response);
         }
-    }
-
-    public Credential getCredential(String userName, String password) {
-        Query query = em.createQuery("FROM Credential c WHERE c.userName = :userName AND c.password = :password");
-        query.setParameter("userName", userName);
-        query.setParameter("password", password);
-
-        return (Credential) query.getSingleResult();
     }
 }

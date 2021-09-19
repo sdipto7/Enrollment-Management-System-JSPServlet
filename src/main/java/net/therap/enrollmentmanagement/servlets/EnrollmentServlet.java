@@ -94,7 +94,7 @@ public class EnrollmentServlet extends HttpServlet {
     public void edit(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         long enrollmentId = Long.parseLong(request.getParameter("enrollmentId"));
         if (enrollmentId == 0) {
-            request.setAttribute("action", "add");
+            request.setAttribute("action", "save");
         } else {
             request.setAttribute("action", "update");
             request.setAttribute("enrollment", enrollmentService.find(enrollmentId));

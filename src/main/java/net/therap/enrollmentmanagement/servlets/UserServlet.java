@@ -85,7 +85,7 @@ public class UserServlet extends HttpServlet {
     public void edit(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         long userId = Long.parseLong(request.getParameter("userId"));
         if (userId == 0) {
-            request.setAttribute("action", "add");
+            request.setAttribute("action", "save");
         } else {
             request.setAttribute("action", "update");
             request.setAttribute("user", userService.find(userId));

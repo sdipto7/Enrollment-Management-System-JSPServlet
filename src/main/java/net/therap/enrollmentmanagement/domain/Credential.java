@@ -23,11 +23,19 @@ public class Credential extends Persistent implements Serializable {
     @JoinColumn(name = "user_id")
     private User user;
 
-    public String getName() {
+    public Credential() {
+    }
+
+    public Credential(String userName, String password) {
+        this.userName = userName;
+        this.password = password;
+    }
+
+    public String getUserName() {
         return userName;
     }
 
-    public void setName(String name) {
+    public void setUserName(String name) {
         this.userName = name;
     }
 
