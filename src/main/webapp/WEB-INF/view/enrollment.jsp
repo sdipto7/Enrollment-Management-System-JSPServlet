@@ -16,7 +16,6 @@
 </c:if>
 <form action="/enrollment" method="post">
     <input type="hidden" name="enrollmentId" value="${enrollmentId}"></input>
-    <input type="hidden" value="${action}" name="action"></input>
     <label for="UserName"> User's Name: </label>
     <input id="UserName" type="text" name="name"></input><br><br>
     <label for="CourseCode"> Course Code: </label>

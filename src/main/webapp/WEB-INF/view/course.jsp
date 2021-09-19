@@ -15,7 +15,6 @@
     <label>Update Information:</label><br>
 </c:if>
 <form action="/course" method="post">
-    <input type="hidden" value="${action}" name="action"></input>
     <input type="hidden" value="${courseId}" name="courseId"></input>
     <label for="courseCode">Code:</label>
     <input id="courseCode" type="text" name="courseCode"></input><br><br>
