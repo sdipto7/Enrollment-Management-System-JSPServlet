@@ -45,7 +45,6 @@ public class UserServlet extends HttpServlet {
 
             default:
                 break;
-
         }
     }
 
