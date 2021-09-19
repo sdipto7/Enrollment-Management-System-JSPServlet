@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.util.Objects;
 
 /**
  * @author rumi.dipto
@@ -27,13 +26,12 @@ public class UserServlet extends HttpServlet {
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        User loggedInUser = SessionUtil.getLoggedInUser(request);
-
-        if (Objects.isNull(loggedInUser)) {
+        if (SessionUtil.checkValidLogin(request, response)) {
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/view/login.jsp");
             requestDispatcher.forward(request, response);
             return;
         }
+
         Action action = Action.getAction(request.getParameter("action"));
         switch (action) {
             case SAVE:
@@ -49,13 +47,12 @@ public class UserServlet extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-        User loggedInUser = SessionUtil.getLoggedInUser(request);
-
-        if (Objects.isNull(loggedInUser)) {
+        if (SessionUtil.checkValidLogin(request, response)) {
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/view/login.jsp");
             requestDispatcher.forward(request, response);
             return;
         }
+
         Action action = Action.getAction(request.getParameter("action"));
         switch (action) {
             case VIEW:

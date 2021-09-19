@@ -43,8 +43,6 @@ public class LoginServlet extends HttpServlet {
         Credential credential = new Credential(userName, password);
         User user = userService.findByCredential(credential);
 
-        System.out.println("HELLO");
-
         if (Objects.nonNull(user)) {
             HttpSession session = request.getSession();
             session.setAttribute("currentUser", user);
