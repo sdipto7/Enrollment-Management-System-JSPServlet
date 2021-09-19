@@ -15,16 +15,16 @@
     <label>Update Information:</label><br><br>
 </c:if>
 <form action="/enrollment" method="post">
-    <input type="hidden" name="enrollmentId" value="${enrollmentId}"/>
-    <input type="hidden" value="${action}" name="action">
-    <label> User's Name: <input type="text" name="name"></label><br><br>
-    <label> Course Code: <input type="text" name="courseCode"></label><br><br>
-    <input type="submit" name="action" value="${action}"><br><br>
+    <input type="hidden" name="enrollmentId" value="${enrollmentId}"></input>
+    <input type="hidden" value="${action}" name="action"></input>
+    <label for="UserName"> User's Name: </label>
+    <input id="UserName" type="text" name="name"></input><br><br>
+    <label for="CourseCode"> Course Code: </label>
+    <input id="CourseCode" type="text" name="courseCode"></input><br><br>
+    <input type="submit" name="action" value="${action}"></input><br><br>
 </form>
 
-<br>
 <c:url var="logoutLink" value="/logout"/>
 <a href="${logoutLink}"><c:out value="Logout"/></a>
-
 </body>
 </html>

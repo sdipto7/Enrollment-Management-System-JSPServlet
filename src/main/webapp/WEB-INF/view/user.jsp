@@ -15,18 +15,19 @@
     <label>Update Information:</label><br><br>
 </c:if>
 <form action="/user" method="post">
-    <input type="hidden" name="userId" value="${userId}"/>
-    <input type="hidden" value="${action}" name="action"/>
-    <label> Name: <input type="text" name="name"></label><br><br>
+    <input type="hidden" name="userId" value="${userId}"></input>
+    <input type="hidden" value="${action}" name="action"></input>
+    <label for="Name"> Name: </label>
+    <input id="Name" type="text" name="name"></input><br><br>
     <label> Role: </label><br>
-    <label><input type="radio" name="role" value="admin"> ADMIN</label><br>
-    <label><input type="radio" name="role" value="user"> USER</label><br><br>
-    <input type="submit" name="action" value="${action}"/><br><br>
+    <label for="Admin"> ADMIN</label>
+    <input id="Admin" type="radio" name="role" value="admin"></input><br>
+    <label for="User"> USER</label>
+    <input id="User" type="radio" name="role" value="user"></input><br><br>
+    <input type="submit" name="action" value="${action}"></input><br><br>
 </form>
 
-<br>
 <c:url var="logoutLink" value="/logout"/>
 <a href="${logoutLink}"><c:out value="Logout"/></a>
-
 </body>
 </html>

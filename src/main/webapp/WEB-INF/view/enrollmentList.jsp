@@ -8,7 +8,7 @@
 <head>
     <title>Enrollments</title>
     <script type="text/javascript">
-        function deleteAlert() {
+        function showAlert() {
             if (!(confirm('Are you sure to delete the selected enrollment ?'))) return false;
         }
     </script>
@@ -44,8 +44,8 @@
                     <a href="${updateLink}"><c:out value="Edit"/></a>
                     |
                     <a href="${deleteLink}"
-                       onclick="deleteAlert()">
-                        <c:out value="Delete"/></a>
+                       onclick="showAlert()">
+                        Delete</a>
                 </td>
             </c:if>
         </tr>
@@ -63,6 +63,5 @@
 
 <c:url var="logoutLink" value="/logout"/>
 <a href="${logoutLink}"><c:out value="Logout"/></a>
-
 </body>
 </html>
