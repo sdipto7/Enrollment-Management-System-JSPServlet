@@ -32,20 +32,20 @@ public class UserServlet extends HttpServlet {
         if (Objects.isNull(loggedInUser)) {
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/view/login.jsp");
             requestDispatcher.forward(request, response);
-        } else {
-            Action action = Action.getAction(request.getParameter("action"));
-            switch (action) {
-                case SAVE:
-                    save(request, response);
-                    break;
-                case UPDATE:
-                    update(request, response);
-                    break;
+            return;
+        }
+        Action action = Action.getAction(request.getParameter("action"));
+        switch (action) {
+            case SAVE:
+                save(request, response);
+                break;
+            case UPDATE:
+                update(request, response);
+                break;
 
-                default:
-                    break;
+            default:
+                break;
 
-            }
         }
     }
 
@@ -55,33 +55,33 @@ public class UserServlet extends HttpServlet {
         if (Objects.isNull(loggedInUser)) {
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/view/login.jsp");
             requestDispatcher.forward(request, response);
-        } else {
-            Action action = Action.getAction(request.getParameter("action"));
-            switch (action) {
-                case VIEW:
-                    showAll(request, response);
-                    break;
+            return;
+        }
+        Action action = Action.getAction(request.getParameter("action"));
+        switch (action) {
+            case VIEW:
+                showAll(request, response);
+                break;
 
-                case EDIT:
-                    long userId = Long.parseLong(request.getParameter("userId"));
-                    if (userId == 0) {
-                        request.setAttribute("action", "add");
-                    } else {
-                        request.setAttribute("action", "update");
-                        request.setAttribute("user", userService.find(userId));
-                        request.setAttribute("userId", userId);
-                    }
-                    RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/view/user.jsp");
-                    requestDispatcher.forward(request, response);
-                    break;
+            case EDIT:
+                long userId = Long.parseLong(request.getParameter("userId"));
+                if (userId == 0) {
+                    request.setAttribute("action", "add");
+                } else {
+                    request.setAttribute("action", "update");
+                    request.setAttribute("user", userService.find(userId));
+                    request.setAttribute("userId", userId);
+                }
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/view/user.jsp");
+                requestDispatcher.forward(request, response);
+                break;
 
-                case DELETE:
-                    delete(request, response);
-                    break;
+            case DELETE:
+                delete(request, response);
+                break;
 
-                default:
-                    break;
-            }
+            default:
+                break;
         }
     }
 

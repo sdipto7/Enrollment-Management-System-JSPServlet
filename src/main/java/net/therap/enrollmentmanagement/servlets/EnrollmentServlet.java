@@ -41,20 +41,20 @@ public class EnrollmentServlet extends HttpServlet {
         if (Objects.isNull(loggedInUser)) {
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/view/login.jsp");
             requestDispatcher.forward(request, response);
-        } else {
-            Action action = Action.getAction(request.getParameter("action"));
-            switch (action) {
-                case SAVE:
-                    save(request, response);
-                    break;
+            return;
+        }
+        Action action = Action.getAction(request.getParameter("action"));
+        switch (action) {
+            case SAVE:
+                save(request, response);
+                break;
 
-                case UPDATE:
-                    update(request, response);
-                    break;
+            case UPDATE:
+                update(request, response);
+                break;
 
-                default:
-                    break;
-            }
+            default:
+                break;
         }
     }
 
@@ -64,33 +64,33 @@ public class EnrollmentServlet extends HttpServlet {
         if (Objects.isNull(loggedInUser)) {
             RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/view/login.jsp");
             requestDispatcher.forward(request, response);
-        } else {
-            Action action = Action.getAction(request.getParameter("action"));
-            switch (action) {
-                case VIEW:
-                    showAll(request, response);
-                    break;
+            return;
+        }
+        Action action = Action.getAction(request.getParameter("action"));
+        switch (action) {
+            case VIEW:
+                showAll(request, response);
+                break;
 
-                case EDIT:
-                    long enrollmentId = Long.parseLong(request.getParameter("enrollmentId"));
-                    if (enrollmentId == 0) {
-                        request.setAttribute("action", "add");
-                    } else {
-                        request.setAttribute("action", "update");
-                        request.setAttribute("enrollment", enrollmentService.find(enrollmentId));
-                        request.setAttribute("enrollmentId", enrollmentId);
-                    }
-                    RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/view/enrollment.jsp");
-                    requestDispatcher.forward(request, response);
-                    break;
+            case EDIT:
+                long enrollmentId = Long.parseLong(request.getParameter("enrollmentId"));
+                if (enrollmentId == 0) {
+                    request.setAttribute("action", "add");
+                } else {
+                    request.setAttribute("action", "update");
+                    request.setAttribute("enrollment", enrollmentService.find(enrollmentId));
+                    request.setAttribute("enrollmentId", enrollmentId);
+                }
+                RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/view/enrollment.jsp");
+                requestDispatcher.forward(request, response);
+                break;
 
-                case DELETE:
-                    delete(request, response);
-                    break;
+            case DELETE:
+                delete(request, response);
+                break;
 
-                default:
-                    break;
-            }
+            default:
+                break;
         }
     }
 

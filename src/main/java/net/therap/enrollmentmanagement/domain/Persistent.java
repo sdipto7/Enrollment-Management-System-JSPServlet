@@ -8,7 +8,7 @@ import java.util.Date;
  * @since 9/14/21
  */
 @MappedSuperclass
-public abstract class Persistent {
+public class Persistent {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
