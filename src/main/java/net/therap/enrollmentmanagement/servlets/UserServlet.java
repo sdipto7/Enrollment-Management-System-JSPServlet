@@ -64,16 +64,7 @@ public class UserServlet extends HttpServlet {
                 break;
 
             case EDIT:
-                long userId = Long.parseLong(request.getParameter("userId"));
-                if (userId == 0) {
-                    request.setAttribute("action", "add");
-                } else {
-                    request.setAttribute("action", "update");
-                    request.setAttribute("user", userService.find(userId));
-                    request.setAttribute("userId", userId);
-                }
-                RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/view/user.jsp");
-                requestDispatcher.forward(request, response);
+                edit(request, response);
                 break;
 
             case DELETE:
@@ -88,6 +79,19 @@ public class UserServlet extends HttpServlet {
     public void showAll(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         request.setAttribute("userList", userService.findAll());
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/view/userList.jsp");
+        requestDispatcher.forward(request, response);
+    }
+
+    public void edit(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        long userId = Long.parseLong(request.getParameter("userId"));
+        if (userId == 0) {
+            request.setAttribute("action", "add");
+        } else {
+            request.setAttribute("action", "update");
+            request.setAttribute("user", userService.find(userId));
+            request.setAttribute("userId", userId);
+        }
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/view/user.jsp");
         requestDispatcher.forward(request, response);
     }
 

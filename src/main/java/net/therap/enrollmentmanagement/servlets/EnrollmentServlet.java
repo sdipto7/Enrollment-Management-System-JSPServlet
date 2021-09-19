@@ -73,16 +73,7 @@ public class EnrollmentServlet extends HttpServlet {
                 break;
 
             case EDIT:
-                long enrollmentId = Long.parseLong(request.getParameter("enrollmentId"));
-                if (enrollmentId == 0) {
-                    request.setAttribute("action", "add");
-                } else {
-                    request.setAttribute("action", "update");
-                    request.setAttribute("enrollment", enrollmentService.find(enrollmentId));
-                    request.setAttribute("enrollmentId", enrollmentId);
-                }
-                RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/view/enrollment.jsp");
-                requestDispatcher.forward(request, response);
+                edit(request, response);
                 break;
 
             case DELETE:
@@ -97,6 +88,19 @@ public class EnrollmentServlet extends HttpServlet {
     public void showAll(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         request.setAttribute("enrollmentList", enrollmentService.findAll());
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/view/enrollmentList.jsp");
+        requestDispatcher.forward(request, response);
+    }
+
+    public void edit(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        long enrollmentId = Long.parseLong(request.getParameter("enrollmentId"));
+        if (enrollmentId == 0) {
+            request.setAttribute("action", "add");
+        } else {
+            request.setAttribute("action", "update");
+            request.setAttribute("enrollment", enrollmentService.find(enrollmentId));
+            request.setAttribute("enrollmentId", enrollmentId);
+        }
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/view/enrollment.jsp");
         requestDispatcher.forward(request, response);
     }
 

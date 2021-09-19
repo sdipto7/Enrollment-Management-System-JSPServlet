@@ -64,16 +64,7 @@ public class CourseServlet extends HttpServlet {
                 break;
 
             case EDIT:
-                long courseId = Long.parseLong(request.getParameter("courseId"));
-                if (courseId == 0) {
-                    request.setAttribute("action", "add");
-                } else {
-                    request.setAttribute("action", "update");
-                    request.setAttribute("course", courseService.find(courseId));
-                    request.setAttribute("courseId", courseId);
-                }
-                RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/view/course.jsp");
-                requestDispatcher.forward(request, response);
+                edit(request, response);
                 break;
 
             case DELETE:
@@ -88,6 +79,19 @@ public class CourseServlet extends HttpServlet {
     public void showAll(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         request.setAttribute("courseList", courseService.findAll());
         RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/view/courseList.jsp");
+        requestDispatcher.forward(request, response);
+    }
+
+    public void edit(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+        long courseId = Long.parseLong(request.getParameter("courseId"));
+        if (courseId == 0) {
+            request.setAttribute("action", "add");
+        } else {
+            request.setAttribute("action", "update");
+            request.setAttribute("course", courseService.find(courseId));
+            request.setAttribute("courseId", courseId);
+        }
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/WEB-INF/view/course.jsp");
         requestDispatcher.forward(request, response);
     }
 
