@@ -30,7 +30,6 @@ public class CourseServlet extends HttpServlet {
             requestDispatcher.forward(request, response);
             return;
         }
-
         Action action = Action.getAction(request.getParameter("action"));
         switch (action) {
             case SAVE:
@@ -52,7 +51,6 @@ public class CourseServlet extends HttpServlet {
             requestDispatcher.forward(request, response);
             return;
         }
-
         Action action = Action.getAction(request.getParameter("action"));
         switch (action) {
             case VIEW:
