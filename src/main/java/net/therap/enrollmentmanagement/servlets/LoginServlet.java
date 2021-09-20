@@ -3,9 +3,7 @@ package net.therap.enrollmentmanagement.servlets;
 import net.therap.enrollmentmanagement.domain.Credential;
 import net.therap.enrollmentmanagement.domain.User;
 import net.therap.enrollmentmanagement.service.UserService;
-import net.therap.enrollmentmanagement.util.EntityManagerSingleton;
 
-import javax.persistence.EntityManager;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -21,12 +19,9 @@ import java.util.Objects;
  */
 public class LoginServlet extends HttpServlet {
 
-    private EntityManager em;
-
     private UserService userService;
 
     public LoginServlet() {
-        em = EntityManagerSingleton.getInstance().getEntityManager();
         userService = new UserService();
     }
 
